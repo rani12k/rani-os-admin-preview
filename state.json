@@ -1,8 +1,10 @@
 {
-  "version": "2026-07-03-004-admin-spec",
+  "version": "2026-07-03-005-principles-packages",
   "summary": {
     "total_capabilities": 21,
     "admin_sections": 9,
+    "work_packages": 8,
+    "operating_principles": 8,
     "capability_rows": 21,
     "open_owner_gates": 1,
     "parked_lanes": 1,
@@ -77,6 +79,26 @@
     "approval_shortcuts": "PASS / NEEDS FIX",
     "stop_return_options": "stop WEB/Admin and return to infrastructure lane only after explicit request"
   },
+  "operating_principles": [
+    {"principle":"Repository First","status":"ACTIVE","meaning":"Repository artifacts define truth, not chat memory"},
+    {"principle":"Evidence First","status":"ACTIVE","meaning":"Progress must be backed by verification or trace"},
+    {"principle":"Artifact First","status":"ACTIVE","meaning":"Critical knowledge enters artifacts, not only conversation"},
+    {"principle":"Execution over planning","status":"ACTIVE","meaning":"When safe, execute the next bounded step"},
+    {"principle":"Run to blocker","status":"ACTIVE","meaning":"Stop only at owner gate, missing source, or real blocker"},
+    {"principle":"Parallel safe lanes","status":"ACTIVE","meaning":"Bundle compatible WEB/Admin, trace, state, and verification tasks"},
+    {"principle":"Minimum Codex friction","status":"ACTIVE","meaning":"Use direct repository work where safe instead of copy-paste loops"},
+    {"principle":"Stable refresh URL","status":"ACTIVE","meaning":"Future public-preview fixes refresh the same URL"}
+  ],
+  "work_packages": [
+    {"package":"OS Runtime Determinism","status":"PASS","lane":"Runtime","next":"Preserve RTM-067 behavior"},
+    {"package":"Controlled Bridge","status":"PASS","lane":"Bridge","next":"Keep result packet discipline"},
+    {"package":"Admin Web Dashboard","status":"IN REVIEW","lane":"WEB/Admin","next":"Owner visual review"},
+    {"package":"Capability Management","status":"IN REVIEW","lane":"Capability","next":"Validate dashboard coverage"},
+    {"package":"Traceability","status":"PARTIAL","lane":"Evidence","next":"Expand trace rows after review"},
+    {"package":"Language / UX","status":"PARTIAL","lane":"Product UX","next":"Define i18n and improve mobile tables"},
+    {"package":"Trading Evidence","status":"PARKED","lane":"Application","next":"Resume only after OS lane is ready"},
+    {"package":"Automation / Agent Runtime","status":"FUTURE","lane":"Future","next":"Not active without approval"}
+  ],
   "capabilities": [
     {"capability":"Repository Governance","layer":"Foundation","status":"Implementation","readiness":"85%","priority":"P0","next":"Maintain register/index alignment"},
     {"capability":"AI Operating Model","layer":"Foundation","status":"Architecture","readiness":"90%","priority":"P0","next":"Synchronize protocols as workflows expand"},
@@ -133,7 +155,8 @@
     {"id":"TRACE-001","event":"Preview V1 published","result":"PASS"},
     {"id":"TRACE-002","event":"Owner found missing dashboard data","result":"NEEDS FIX"},
     {"id":"TRACE-003","event":"Capability roadmap inventory added","result":"IN REVIEW"},
-    {"id":"TRACE-004","event":"Admin Web required sections aligned","result":"IN REVIEW"}
+    {"id":"TRACE-004","event":"Admin Web required sections aligned","result":"IN REVIEW"},
+    {"id":"TRACE-005","event":"Operating principles and work packages added","result":"IN REVIEW"}
   ],
   "repository": {
     "public_preview": "sanitized only",
