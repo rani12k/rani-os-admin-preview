@@ -2,12 +2,35 @@ const stamp = Date.now();
 const qs = new URLSearchParams(window.location.search);
 const stateUrl = qs.get('state') || `state.json?v=${stamp}`;
 const managedUrl = qs.get('managed') || `managed-work.json?v=${stamp}`;
+const mobileQuery = window.matchMedia('(max-width:820px)');
 
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function val(v){if(v===null||v===undefined||v==='')return'unknown';if(Array.isArray(v))return v.length?v.map(x=>`<span class='chip'>${esc(x)}</span>`).join(' '):'None';if(typeof v==='object')return `<pre>${esc(JSON.stringify(v,null,2))}</pre>`;return esc(v)}
+function val(v){
+  if(v===null||v===undefined||v==='')return'unknown';
+  if(Array.isArray(v))return v.length?v.map(x=>`<span class='chip'>${esc(x)}</span>`).join(' '):'None';
+  if(typeof v==='object')return `<pre>${esc(JSON.stringify(v,null,2))}</pre>`;
+  return esc(v)
+}
 function rows(o){return Object.entries(o||{}).map(([k,v])=>`<div class='row'><div class='label'>${esc(k)}</div><div class='value'>${val(v)}</div></div>`).join('')||'unknown'}
-function table(list,cols){return `<table><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(list||[]).map(r=>`<tr>${cols.map(c=>`<td>${val(r[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
+function firstPresent(row, cols){return cols.map(c=>row[c]).find(v=>v!==undefined&&v!==null&&v!=='') || 'item'}
+function cardTable(list,cols){
+  return `<div class='cardlist'>${(list||[]).map(r=>`<article class='datacard'><div class='cardtitle'>${val(firstPresent(r,cols))}</div>${cols.map(c=>`<div class='minirow'><div class='minilabel'>${esc(c)}</div><div>${val(r[c]??'')}</div></div>`).join('')}</article>`).join('')}</div>`
+}
+function table(list,cols){
+  if(mobileQuery.matches)return cardTable(list,cols);
+  return `<table><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(list||[]).map(r=>`<tr>${cols.map(c=>`<td>${val(r[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table>`
+}
 function set(id, html){const el=document.getElementById(id); if(el) el.innerHTML = html;}
+function renderMobileReview(state){
+  const m = state.mobile_review || {};
+  const cards = [
+    ['mode', m.mode || 'mobile_density_patch'],
+    ['owner finding', m.owner_finding || 'mobile view was long / dense'],
+    ['patched now', m.patched_now || 'collapsed sections + card tables + quick nav'],
+    ['owner check', m.owner_check || 'refresh fixed URL on phone']
+  ];
+  set('mobile_review', `<div class='mobilegrid'>${cards.map(([k,v])=>`<div class='mobilecard'><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div><div class='compact-note'>Mobile keeps the action panels open and collapses the deep inventory panels so the owner can review without scrolling through every table.</div>`);
+}
 function renderManaged(m){
   const summary = rows(m.inventory_summary || {});
   const groups = table(m.groups,['group','count','source','status','dashboard_role']);
@@ -15,8 +38,19 @@ function renderManaged(m){
   const next = table(m.next_dashboard_improvements,['id','label','status']);
   set('managed_work', `<h3>Inventory Summary</h3>${summary}<h3>Groups</h3>${groups}<h3>Why task count looked small</h3>${reasons}<h3>Next improvements</h3>${next}`);
 }
+function applyMobileDisclosure(){
+  document.querySelectorAll('details.panel').forEach(d=>{
+    if(mobileQuery.matches){
+      if(d.dataset.mobileOpen === 'true') d.open = true;
+      else d.open = false;
+    } else {
+      d.open = true;
+    }
+  });
+}
 function render(state){
-  set('status', `<div class='pass'>Preview loaded · ${esc(state.version || 'current')} · refresh-safe state</div>`);
+  set('status', `<div class='pass'>Preview loaded · ${esc(state.version || 'current')} · refresh-safe mobile-compressed state</div>`);
+  renderMobileReview(state);
   set('kpis', Object.entries(state.summary||{}).map(([k,v])=>`<div class='kpi'><div class='num'>${esc(v)}</div><div class='txt'>${esc(k)}</div></div>`).join(''));
   set('operating_principles', table(state.operating_principles,['principle','status','meaning']));
   set('work_packages', table(state.work_packages,['package','status','lane','next']));
@@ -28,6 +62,7 @@ function render(state){
   set('gates', table(state.gates,['gate','status','decision']));
   set('trace', table(state.trace,['id','event','result']));
   set('next_actions', table(state.next_actions,['id','label','lane','recommended','status']));
+  applyMobileDisclosure();
 }
 fetch(stateUrl, {cache:'no-store'})
   .then(r => r.json())
@@ -37,3 +72,4 @@ fetch(managedUrl, {cache:'no-store'})
   .then(r => r.json())
   .then(renderManaged)
   .catch(() => set('managed_work', `<div class='bad'>Could not load managed-work.json</div>`));
+mobileQuery.addEventListener?.('change', () => location.reload());
