@@ -21,35 +21,47 @@ function table(list,cols){
   return `<table><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(list||[]).map(r=>`<tr>${cols.map(c=>`<td>${val(r[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table>`
 }
 function set(id, html){const el=document.getElementById(id); if(el) el.innerHTML = html;}
+function renderExecutive(state){
+  const x = state.executive_mobile || {};
+  const cards = [
+    ['Source', x.source_of_truth || 'CURRENT_STATE.md wins'],
+    ['Active', x.active_work || 'unknown'],
+    ['Gate', x.owner_gate || 'unknown'],
+    ['Coverage', x.coverage_warning || 'Active slice is not full backlog']
+  ];
+  set('executive_summary', `<div class='actionstrip'>${cards.map(([k,v])=>`<div class='actioncard'><div class='title'>${esc(k)}</div><div class='body'>${esc(v)}</div></div>`).join('')}</div><div class='compact-note'>This mobile top panel is repo-backed orientation only. It does not replace Artifact Register, Candidate Register, Capability Roadmap, or Managed Work Coverage Check.</div>`);
+}
 function renderMobileReview(state){
   const m = state.mobile_review || {};
   const cards = [
     ['mode', m.mode || 'mobile_density_patch'],
-    ['owner finding', m.owner_finding || 'mobile view was long / dense'],
-    ['patched now', m.patched_now || 'collapsed sections + card tables + quick nav'],
+    ['owner finding', m.owner_finding || 'mobile view issue'],
+    ['patched now', m.patched_now || 'repo-backed coverage correction'],
     ['owner check', m.owner_check || 'refresh fixed URL on phone']
   ];
-  set('mobile_review', `<div class='mobilegrid'>${cards.map(([k,v])=>`<div class='mobilecard'><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div><div class='compact-note'>Mobile keeps the action panels open and collapses the deep inventory panels so the owner can review without scrolling through every table.</div>`);
+  set('mobile_review', `<div class='mobilegrid'>${cards.map(([k,v])=>`<div class='mobilecard'><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>`);
 }
 function renderManaged(m){
   const summary = rows(m.inventory_summary || {});
   const groups = table(m.groups,['group','count','source','status','dashboard_role']);
+  const sources = table(m.required_source_coverage || [],['source','repo_path','dashboard_role','status']);
+  const warning = table(m.not_full_backlog_warning || [],['warning','repo_basis','dashboard_effect']);
   const reasons = table(m.why_task_count_looked_small,['reason','meaning']);
   const next = table(m.next_dashboard_improvements,['id','label','status']);
-  set('managed_work', `<h3>Inventory Summary</h3>${summary}<h3>Groups</h3>${groups}<h3>Why task count looked small</h3>${reasons}<h3>Next improvements</h3>${next}`);
+  set('managed_work', `<h3>Inventory Summary</h3>${summary}<h3>Required Source Coverage</h3>${sources}<h3>Managed Work Groups</h3>${groups}<h3>Not a Full Backlog Warning</h3>${warning}<h3>Why the task list looked small</h3>${reasons}<h3>Next improvements</h3>${next}`);
 }
 function applyMobileDisclosure(){
   document.querySelectorAll('details.panel').forEach(d=>{
     if(mobileQuery.matches){
-      if(d.dataset.mobileOpen === 'true') d.open = true;
-      else d.open = false;
+      d.open = d.dataset.mobileOpen === 'true';
     } else {
       d.open = true;
     }
   });
 }
 function render(state){
-  set('status', `<div class='pass'>Preview loaded · ${esc(state.version || 'current')} · refresh-safe mobile-compressed state</div>`);
+  set('status', `<div class='pass'>Preview loaded · ${esc(state.version || 'current')} · repo-backed managed-work correction</div>`);
+  renderExecutive(state);
   renderMobileReview(state);
   set('kpis', Object.entries(state.summary||{}).map(([k,v])=>`<div class='kpi'><div class='num'>${esc(v)}</div><div class='txt'>${esc(k)}</div></div>`).join(''));
   set('operating_principles', table(state.operating_principles,['principle','status','meaning']));
