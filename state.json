@@ -1,10 +1,11 @@
 {
-  "version": "2026-07-03-002",
+  "version": "2026-07-03-003-capabilities",
   "summary": {
-    "total_tasks": 12,
-    "pass": 9,
-    "needs_fix": 1,
-    "owner_gates": 1,
+    "total_capabilities": 21,
+    "implementation": 5,
+    "architecture": 10,
+    "discovery": 4,
+    "not_started": 1,
     "parked": 1
   },
   "runtime": {
@@ -14,9 +15,9 @@
     "source": "sanitized public preview"
   },
   "current_work": {
-    "active_work_item": "Admin Web dashboard completeness",
+    "active_work_item": "Admin Web dashboard capability inventory",
     "last_completed_work_item": "Public preview V2 dashboard update",
-    "current_phase": "Public Preview Review",
+    "current_phase": "Capability Dashboard Review",
     "owner_gate": "Visual review",
     "parked_work": ["Trading Evidence"]
   },
@@ -25,41 +26,71 @@
     {"id":"BUNDLE-002","name":"Infrastructure Execution Bundle 002","status":"PASS","lane":"Infrastructure","next":"Complete"},
     {"id":"BRIDGE-001","name":"Controlled Executor Bridge Proof Slice","status":"PASS","lane":"Bridge","next":"Continue"},
     {"id":"WEB-SCHEMA","name":"Admin Web State Schema","status":"PASS","lane":"WEB/Admin","next":"Use as state contract"},
-    {"id":"WEB-SHELL","name":"Admin Web UI Shell","status":"NEEDS FIX","lane":"WEB/Admin","next":"Add full dashboard data"},
-    {"id":"PUBLIC-PREVIEW","name":"Public sanitized preview repo","status":"PASS","lane":"WEB/Admin","next":"Visual review"},
-    {"id":"TRACEABILITY","name":"Traceability records","status":"PARTIAL","lane":"Evidence","next":"Expand task trace table"},
-    {"id":"REGISTER","name":"Register/index reconciliation","status":"PARTIAL","lane":"Repository","next":"Reconcile canonical files later"},
-    {"id":"PAGES","name":"Private repo Pages path","status":"BLOCKED","lane":"Hosting","next":"Use public preview repo"},
-    {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"},
-    {"id":"OWNER-REVIEW","name":"Owner visual review","status":"OWNER GATE","lane":"Decision","next":"PASS / NEEDS FIX"},
-    {"id":"NEXT","name":"Dashboard data completeness","status":"ACTIVE NEXT","lane":"WEB/Admin","next":"Review V2"}
+    {"id":"WEB-DASHBOARD","name":"Admin Web full dashboard inventory","status":"ACTIVE NEXT","lane":"WEB/Admin","next":"Review capability coverage"},
+    {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"}
+  ],
+  "capabilities": [
+    {"capability":"Repository Governance","layer":"Foundation","status":"Implementation","readiness":"85%","priority":"P0","next":"Maintain register/index alignment"},
+    {"capability":"AI Operating Model","layer":"Foundation","status":"Architecture","readiness":"90%","priority":"P0","next":"Synchronize protocols as workflows expand"},
+    {"capability":"Runtime Context","layer":"Infrastructure","status":"Implementation","readiness":"88%","priority":"P0","next":"Runtime Engine verification / dashboard support"},
+    {"capability":"Evidence Management","layer":"Evidence","status":"Implementation","readiness":"55%","priority":"P0","next":"Promote evidence records beyond REVIEWED"},
+    {"capability":"Data Ingestion And Validation","layer":"Data","status":"Architecture","readiness":"80%","priority":"P0","next":"Maintain MVP validation alignment"},
+    {"capability":"Reliable Market Context","layer":"Context","status":"Architecture","readiness":"65%","priority":"P0","next":"Broker/provider adapter deferred"},
+    {"capability":"Visual Context","layer":"Context","status":"Architecture","readiness":"85%","priority":"P1","next":"Screenshot fixtures and examples later"},
+    {"capability":"Broker Integration","layer":"Execution/Data","status":"Discovery","readiness":"15%","priority":"P1","next":"Adapter artifact later"},
+    {"capability":"Trading Decision","layer":"Decision","status":"Architecture","readiness":"75%","priority":"P1","next":"Decision fixtures later"},
+    {"capability":"Execution Engine","layer":"Execution","status":"Discovery","readiness":"10%","priority":"P2","next":"Execution boundary artifact later"},
+    {"capability":"System Logs","layer":"Learning","status":"Architecture","readiness":"85%","priority":"P1","next":"Add log examples later"},
+    {"capability":"Trade Research","layer":"Learning","status":"Architecture","readiness":"70%","priority":"P2","next":"First research record after logs"},
+    {"capability":"Model Evolution","layer":"Learning","status":"Architecture","readiness":"75%","priority":"P2","next":"Use after research/evidence support"},
+    {"capability":"Knowledge Management","layer":"Governance","status":"Implementation","readiness":"75%","priority":"P0","next":"Maintain artifact lifecycle"},
+    {"capability":"Architecture Review","layer":"Governance","status":"Architecture","readiness":"80%","priority":"P0","next":"Maintain review protocol"},
+    {"capability":"Decision Records","layer":"Governance","status":"Implementation","readiness":"60%","priority":"P1","next":"Reconcile decision log"},
+    {"capability":"Monitoring","layer":"Infrastructure","status":"Not Started","readiness":"5%","priority":"P3","next":"Define after logs integrate"},
+    {"capability":"Health Monitoring","layer":"Infrastructure","status":"Discovery","readiness":"10%","priority":"P2","next":"Define health states"},
+    {"capability":"Audit And Traceability","layer":"Evidence","status":"Architecture","readiness":"65%","priority":"P1","next":"End-to-end trace reports"},
+    {"capability":"Recovery","layer":"Infrastructure","status":"Implementation","readiness":"55%","priority":"P1","next":"Recovery validation checklist"},
+    {"capability":"Future Automation","layer":"Future","status":"Discovery","readiness":"10%","priority":"P3","next":"Post-MVP automation only"}
+  ],
+  "language_and_ux": [
+    {"area":"Hebrew RTL","status":"PARTIAL","next":"Keep UI RTL-safe and Hebrew-first where possible"},
+    {"area":"English identifiers","status":"ACTIVE","next":"Keep technical IDs stable in English"},
+    {"area":"Mobile usability","status":"IN REVIEW","next":"Improve table readability on phone"},
+    {"area":"Desktop usability","status":"NOT REVIEWED","next":"Owner desktop review later"},
+    {"area":"Multi-language support","status":"NOT STARTED","next":"Define language policy and i18n strategy later"}
   ],
   "lanes": [
-    {"name":"Runtime","status":"PASS","count":3},
-    {"name":"Bridge","status":"PASS","count":2},
-    {"name":"WEB/Admin","status":"ACTIVE","count":5},
-    {"name":"Traceability","status":"PARTIAL","count":2},
-    {"name":"Application","status":"PARKED","count":1}
+    {"name":"Foundation","status":"ACTIVE","count":3},
+    {"name":"Infrastructure","status":"ACTIVE","count":4},
+    {"name":"Data/Context/Decision","status":"ARCHITECTURE","count":5},
+    {"name":"Execution","status":"DISCOVERY","count":2},
+    {"name":"Evidence/Learning","status":"PARTIAL","count":5},
+    {"name":"Future/Product","status":"DISCOVERY","count":2}
   ],
   "gates": [
     {"gate":"Owner visual review","status":"OPEN","decision":"PASS / NEEDS FIX"},
     {"gate":"Trading Evidence","status":"PARKED","decision":"Not now"},
-    {"gate":"Private repository publication","status":"REJECTED","decision":"Use public sanitized repo"}
+    {"gate":"Private repository publication","status":"REJECTED","decision":"Use public sanitized repo"},
+    {"gate":"Automation / command runner","status":"NOT APPROVED","decision":"Future only"},
+    {"gate":"Multi-language product support","status":"NOT DEFINED","decision":"Needs policy later"}
   ],
   "trace": [
     {"id":"TRACE-001","event":"Preview V1 published","result":"PASS"},
     {"id":"TRACE-002","event":"Owner found missing dashboard data","result":"NEEDS FIX"},
-    {"id":"TRACE-003","event":"Preview V2 dashboard completeness","result":"IN REVIEW"}
+    {"id":"TRACE-003","event":"Preview V2 dashboard completeness","result":"IN REVIEW"},
+    {"id":"TRACE-004","event":"Capability roadmap inventory added","result":"IN REVIEW"}
   ],
   "repository": {
     "public_preview": "sanitized only",
     "private_source": "not included",
     "secrets": "not included",
     "tokens": "not included",
-    "trading_evidence": "not included"
+    "trading_evidence": "not included",
+    "capability_data": "sanitized from Capability Roadmap"
   },
   "next_actions": [
-    {"id":"NEXT-001","label":"Owner reviews V2 dashboard and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
-    {"id":"NEXT-002","label":"If NEEDS FIX, patch the specific missing panel","lane":"WEB/Admin","recommended":false,"status":"ready"}
+    {"id":"NEXT-001","label":"Owner reviews capability dashboard and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
+    {"id":"NEXT-002","label":"If NEEDS FIX, patch missing capability / language / status panel","lane":"WEB/Admin","recommended":false,"status":"ready"},
+    {"id":"NEXT-003","label":"Later: connect dashboard to generated repository state instead of hand-maintained JSON","lane":"Infrastructure","recommended":false,"status":"future"}
   ]
 }
