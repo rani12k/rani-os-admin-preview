@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-03-007-repo-backed-managed-work-correction",
+  "version": "2026-07-03-008-repo-backed-no-invented-counts",
   "summary": {
     "registered_artifacts": 126,
     "capabilities": 21,
@@ -14,12 +14,12 @@
     "source_of_truth": "CURRENT_STATE.md wins",
     "active_work": "Admin Web mobile visual review",
     "owner_gate": "Review fixed preview URL on mobile: PASS / NEEDS FIX",
-    "coverage_warning": "Task List is only active execution slice, not full backlog"
+    "coverage_warning": "Active Execution Slice is not full backlog"
   },
   "mobile_review": {
     "mode": "WEB/Admin repo-backed managed-work correction",
-    "owner_finding": "Preview under-represented the real amount of managed work: dozens of candidates / bugs / ideas are not shown in the small Task List",
-    "patched_now": "Task List renamed in data as active execution slice; Managed Work now points to Artifact Register, Candidate Register, Capability Roadmap, and Managed Work Coverage Check",
+    "owner_finding": "Preview under-represented managed work by showing a small active execution slice without clearly separating it from Artifact Register / Candidate Register / Capability Roadmap coverage",
+    "patched_now": "Active Execution Slice is now separated from Managed Work Coverage; exact candidate count is explicitly marked as not generated",
     "owner_check": "Refresh the same fixed URL and verify it no longer implies that 5 rows equal the full work backlog"
   },
   "system_status": {
@@ -27,7 +27,7 @@
     "source_of_truth": "CURRENT_STATE.md wins",
     "github_master_sync_status": "private runtime and managed-work sources read before patch",
     "web_data_freshness": "manual / refresh-safe JSON",
-    "last_update_time": "2026-07-03 20:40 Israel",
+    "last_update_time": "2026-07-03 20:50 Israel",
     "current_mode": "deterministic_web_admin_execution"
   },
   "current_work_item": {
@@ -35,20 +35,20 @@
     "last_completed_work_item": "Public preview repo-backed managed-work correction patch",
     "current_next_executable_item": "Owner reviews whether mobile preview now reflects repo-backed managed work without undercounting",
     "work_item_state": "PATCHED / OWNER REVIEW",
-    "related_artifact_path": "00_MASTER/MANAGED_WORK_COVERAGE_CHECK.md + 00_MASTER/CANDIDATE_REGISTER.md + 00_MASTER/ARTIFACT_REGISTER.md",
+    "related_artifact_path": "MANAGED_WORK_COVERAGE_CHECK + CANDIDATE_REGISTER + ARTIFACT_REGISTER",
     "action_type": "visual review / managed work coverage / mobile UX patch"
   },
   "execution_queue_detail": {
     "active": "WEB/Admin dashboard managed-work coverage correction",
-    "execution_gaps": "generated state source, full private repo sync, sanitized candidate-register count table, artifact-category count table",
-    "deferred": "Trading Evidence, automation, broker execution, production readiness",
+    "execution_gaps": "generated state source, private repo sync, sanitized candidate-register count table, artifact-category count table",
+    "deferred": "Trading Evidence, automation, production readiness",
     "behavior_pass": "RTM-065, RTM-066, RTM-067, BUG-008 Managed Work Coverage Check",
     "critical_warning": "Candidate Register is not full backlog, scheduler, discovery engine, or task manager"
   },
   "approval_center": {
     "current_approval_card": "Owner mobile visual review after managed-work correction",
     "approved": "public sanitized preview repository and hosted preview path",
-    "not_approved": "publishing private RANI_OS, trading evidence resume, automation, broker execution",
+    "not_approved": "publishing private RANI_OS or resuming parked lanes",
     "single_use_status": "repo-backed managed-work correction review only",
     "expiration_conditions": "expires after PASS / NEEDS FIX decision",
     "required_owner_action": "return PASS or specific NEEDS FIX after mobile refresh"
@@ -60,12 +60,12 @@
     "github_connector_fetch_file_used": "YES",
     "local_fallback_used": "NO",
     "files_read": "CURRENT_STATE, CANDIDATE_REGISTER, ARTIFACT_REGISTER, MANAGED_WORK_COVERAGE_CHECK, CAPABILITY_ROADMAP, public preview files",
-    "files_changed": "rani-os-admin-preview index.html, app.js, state.json, managed-work.json, README.md; private CURRENT_STATE and completion bundle updated as needed",
-    "boundary_status": "private repo details sanitized; dashboard no longer claims task list is full backlog"
+    "files_changed": "public preview index.html, app.js, state.json, managed-work.json, README.md; private CURRENT_STATE and completion bundle updated as needed",
+    "boundary_status": "private repo details sanitized; dashboard no longer claims active execution slice is full backlog"
   },
   "evidence_measurement": {
     "measurement_required": "YES",
-    "measurement_registered": "owner correction: preview omitted/undercounted dozens of tasks, ideas, bugs",
+    "measurement_registered": "owner correction: preview omitted or undercounted tasks, ideas, bugs, and managed work",
     "measured_now": "PARTIAL",
     "measurement_category": "managed work coverage / dashboard correctness / mobile readability",
     "sample_counts": "126 governed artifacts; 21 capabilities; Candidate Register managed entries present; exact public candidate count not generated yet",
@@ -75,7 +75,7 @@
     "open_incidents": "raw.githack branch cache, private repo Pages unavailable on current plan, public preview uses sanitized manual JSON",
     "severity": "medium",
     "current_blocker": "owner review of repo-backed managed-work correction",
-    "required_next_safe_action": "refresh fixed URL and check whether task/candidate/backlog distinction is now clear",
+    "required_next_safe_action": "refresh fixed URL and check whether active-slice / candidate-register / backlog distinction is now clear",
     "blocker_affects_execution": "NO for patch completion; YES for PASS closure"
   },
   "repository_sync": {
@@ -86,7 +86,7 @@
   },
   "next_action_controls": {
     "recommended_option": "review fixed preview on mobile and report PASS / NEEDS FIX",
-    "reason_for_recommendation": "owner corrected that the preview underrepresented dozens of managed candidates, bugs, ideas, and work items",
+    "reason_for_recommendation": "owner corrected that the preview underrepresented managed candidates, bugs, ideas, and work items",
     "numbered_options": "1 PASS, 2 NEEDS FIX with missing source/panel, 3 request candidate-register count generation",
     "approval_shortcuts": "PASS / NEEDS FIX",
     "stop_return_options": "stop WEB/Admin and return to infrastructure lane only after explicit request"
@@ -97,13 +97,13 @@
     {"principle":"Artifact First","status":"ACTIVE","meaning":"Critical work exists in Artifact Register / Candidate Register / roadmap artifacts"},
     {"principle":"Conversation Is Not Source Of Truth","status":"ACTIVE","meaning":"Owner correction is Discovery Source; repository artifacts remain truth"},
     {"principle":"Managed Work Coverage Check","status":"ACTIVE","meaning":"Before comparison, current state, candidate register, master index, roadmap, and owner strategic path must be checked"},
-    {"principle":"Do not undercount work","status":"ACTIVE","meaning":"Task List is active execution slice only, not total backlog"},
+    {"principle":"Do not undercount work","status":"ACTIVE","meaning":"Active Execution Slice is not total backlog"},
     {"principle":"No invented backlog","status":"ACTIVE","meaning":"If exact counts are not generated, mark them as not generated"},
     {"principle":"Stable refresh URL","status":"ACTIVE","meaning":"Future public-preview fixes refresh the same URL"}
   ],
   "work_packages": [
     {"package":"OS Runtime Determinism","status":"PASS","lane":"Runtime","next":"Preserve RTM-067 behavior"},
-    {"package":"Managed Work Coverage","status":"ACTIVE / SOURCE-BACKED","lane":"Runtime / Governance","next":"Do not display active task slice as full backlog"},
+    {"package":"Managed Work Coverage","status":"ACTIVE / SOURCE-BACKED","lane":"Runtime / Governance","next":"Do not display active execution slice as full backlog"},
     {"package":"Admin Web Dashboard","status":"PATCHED / REVIEW","lane":"WEB/Admin","next":"Owner mobile review"},
     {"package":"Capability Management","status":"IN REVIEW","lane":"Capability","next":"Validate dashboard coverage"},
     {"package":"Candidate / Bug Register Visibility","status":"PARTIAL","lane":"WEB/Admin","next":"Generate sanitized count table later if approved"},
@@ -138,7 +138,7 @@
     {"area":"Hebrew RTL","status":"PATCHED / REVIEW","next":"Validate RTL with repo-backed managed-work sections"},
     {"area":"English identifiers","status":"ACTIVE","next":"Keep technical IDs stable in English"},
     {"area":"Mobile usability","status":"PATCHED / REVIEW","next":"Owner checks phone view after refresh"},
-    {"area":"Dashboard semantics","status":"PATCHED / REVIEW","next":"Verify active slice vs full backlog distinction"},
+    {"area":"Dashboard semantics","status":"PATCHED / REVIEW","next":"Verify active execution slice vs full backlog distinction"},
     {"area":"Multi-language support","status":"NOT STARTED","next":"Define language policy and i18n strategy later"}
   ],
   "tasks": [
@@ -177,9 +177,6 @@
   "repository": {
     "public_preview": "sanitized only",
     "private_source": "not included",
-    "secrets": "not included",
-    "tokens": "not included",
-    "trading_evidence": "not included",
     "capability_data": "sanitized from Capability Roadmap",
     "managed_work_data": "corrected from Artifact Register / Candidate Register / Managed Work Coverage Check",
     "exact_candidate_count": "not generated in this patch"
