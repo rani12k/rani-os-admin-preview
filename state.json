@@ -1,49 +1,55 @@
 {
-  "version": "2026-07-03-006-mobile-density",
+  "version": "2026-07-03-007-repo-backed-managed-work-correction",
   "summary": {
-    "total_capabilities": 21,
+    "registered_artifacts": 126,
+    "capabilities": 21,
     "admin_sections": 9,
-    "work_packages": 8,
-    "operating_principles": 8,
-    "capability_rows": 21,
-    "open_owner_gates": 1,
+    "active_execution_slice_rows": 5,
+    "candidate_register": "managed entries present",
+    "full_backlog_manager": "not implemented",
     "parked_lanes": 1,
-    "blocked_lanes": 1
+    "owner_gate_open": 1
+  },
+  "executive_mobile": {
+    "source_of_truth": "CURRENT_STATE.md wins",
+    "active_work": "Admin Web mobile visual review",
+    "owner_gate": "Review fixed preview URL on mobile: PASS / NEEDS FIX",
+    "coverage_warning": "Task List is only active execution slice, not full backlog"
   },
   "mobile_review": {
-    "mode": "WEB/Admin mobile density patch",
-    "owner_finding": "Dashboard visible, but mobile view is very long and dense",
-    "patched_now": "Top quick navigation, collapsible panels, mobile card tables, and action-first open sections",
-    "owner_check": "Refresh the same fixed URL on phone and review mobile readability"
+    "mode": "WEB/Admin repo-backed managed-work correction",
+    "owner_finding": "Preview under-represented the real amount of managed work: dozens of candidates / bugs / ideas are not shown in the small Task List",
+    "patched_now": "Task List renamed in data as active execution slice; Managed Work now points to Artifact Register, Candidate Register, Capability Roadmap, and Managed Work Coverage Check",
+    "owner_check": "Refresh the same fixed URL and verify it no longer implies that 5 rows equal the full work backlog"
   },
   "system_status": {
     "runtime_status": "active",
     "source_of_truth": "CURRENT_STATE.md wins",
-    "github_master_sync_status": "public preview mobile patch applied",
+    "github_master_sync_status": "private runtime and managed-work sources read before patch",
     "web_data_freshness": "manual / refresh-safe JSON",
-    "last_update_time": "2026-07-03 20:10 Israel",
+    "last_update_time": "2026-07-03 20:40 Israel",
     "current_mode": "deterministic_web_admin_execution"
   },
   "current_work_item": {
-    "active_work_item": "Admin Web mobile density improvement",
-    "last_completed_work_item": "Public preview mobile density patch",
-    "current_next_executable_item": "Owner reviews mobile-compressed dashboard and returns PASS or NEEDS FIX",
+    "active_work_item": "Admin Web managed-work coverage correction",
+    "last_completed_work_item": "Public preview repo-backed managed-work correction patch",
+    "current_next_executable_item": "Owner reviews whether mobile preview now reflects repo-backed managed work without undercounting",
     "work_item_state": "PATCHED / OWNER REVIEW",
-    "related_artifact_path": "00_MASTER/ADMIN_WEB_DASHBOARD_COMPLETION_BUNDLE_001.md",
-    "action_type": "visual review / mobile UX patch / dashboard compression"
+    "related_artifact_path": "00_MASTER/MANAGED_WORK_COVERAGE_CHECK.md + 00_MASTER/CANDIDATE_REGISTER.md + 00_MASTER/ARTIFACT_REGISTER.md",
+    "action_type": "visual review / managed work coverage / mobile UX patch"
   },
   "execution_queue_detail": {
-    "active": "WEB/Admin dashboard mobile density",
-    "execution_gaps": "generated state source, full private repo sync, deeper artifact/register counts",
+    "active": "WEB/Admin dashboard managed-work coverage correction",
+    "execution_gaps": "generated state source, full private repo sync, sanitized candidate-register count table, artifact-category count table",
     "deferred": "Trading Evidence, automation, broker execution, production readiness",
-    "behavior_pass": "RTM-065, RTM-066, RTM-067, bridge proof slice",
-    "unknown_or_stale": "public preview is sanitized and not full source of truth"
+    "behavior_pass": "RTM-065, RTM-066, RTM-067, BUG-008 Managed Work Coverage Check",
+    "critical_warning": "Candidate Register is not full backlog, scheduler, discovery engine, or task manager"
   },
   "approval_center": {
-    "current_approval_card": "Owner mobile visual review",
+    "current_approval_card": "Owner mobile visual review after managed-work correction",
     "approved": "public sanitized preview repository and hosted preview path",
     "not_approved": "publishing private RANI_OS, trading evidence resume, automation, broker execution",
-    "single_use_status": "mobile density review only",
+    "single_use_status": "repo-backed managed-work correction review only",
     "expiration_conditions": "expires after PASS / NEEDS FIX decision",
     "required_owner_action": "return PASS or specific NEEDS FIX after mobile refresh"
   },
@@ -53,56 +59,56 @@
     "direct_github_master_fetch_used": "YES",
     "github_connector_fetch_file_used": "YES",
     "local_fallback_used": "NO",
-    "files_read": "Current State, Operating Protocol, Admin Web completion bundle, public preview files",
-    "files_changed": "rani-os-admin-preview index.html, app.js, state.json, managed-work.json, README.md",
-    "boundary_status": "private repo data sanitized"
+    "files_read": "CURRENT_STATE, CANDIDATE_REGISTER, ARTIFACT_REGISTER, MANAGED_WORK_COVERAGE_CHECK, CAPABILITY_ROADMAP, public preview files",
+    "files_changed": "rani-os-admin-preview index.html, app.js, state.json, managed-work.json, README.md; private CURRENT_STATE and completion bundle updated as needed",
+    "boundary_status": "private repo details sanitized; dashboard no longer claims task list is full backlog"
   },
   "evidence_measurement": {
     "measurement_required": "YES",
-    "measurement_registered": "mobile density owner finding routed to WEB/Admin patch",
+    "measurement_registered": "owner correction: preview omitted/undercounted dozens of tasks, ideas, bugs",
     "measured_now": "PARTIAL",
-    "measurement_category": "mobile readability / dashboard compression / owner effort",
-    "sample_counts": "1 owner visual review finding + repository verification",
-    "classification": "NEEDS FIX -> MOBILE PATCHED -> OWNER REVIEW"
+    "measurement_category": "managed work coverage / dashboard correctness / mobile readability",
+    "sample_counts": "126 governed artifacts; 21 capabilities; Candidate Register managed entries present; exact public candidate count not generated yet",
+    "classification": "NEEDS FIX -> REPO-BACKED CORRECTION PATCHED -> OWNER REVIEW"
   },
   "incidents_blockers": {
-    "open_incidents": "raw.githack branch cache, private repo Pages unavailable on current plan",
+    "open_incidents": "raw.githack branch cache, private repo Pages unavailable on current plan, public preview uses sanitized manual JSON",
     "severity": "medium",
-    "current_blocker": "owner mobile visual review of compressed dashboard",
-    "required_next_safe_action": "refresh fixed URL on mobile and inspect compressed panels",
+    "current_blocker": "owner review of repo-backed managed-work correction",
+    "required_next_safe_action": "refresh fixed URL and check whether task/candidate/backlog distinction is now clear",
     "blocker_affects_execution": "NO for patch completion; YES for PASS closure"
   },
   "repository_sync": {
-    "github_master_status": "private runtime read verified; public preview repo patched",
+    "github_master_status": "private runtime and managed-work source artifacts read; public preview patched",
     "local_repository_status": "not provided",
     "last_pull_status": "not provided",
-    "web_values_synced_or_stale": "manual JSON synced to public preview repo"
+    "web_values_synced_or_stale": "manual JSON corrected from repository-backed source reads"
   },
   "next_action_controls": {
-    "recommended_option": "review compressed mobile dashboard and report PASS / NEEDS FIX",
-    "reason_for_recommendation": "owner already found dashboard visible but too long / dense on mobile",
-    "numbered_options": "1 PASS, 2 NEEDS FIX with panel name, 3 request next dashboard field",
+    "recommended_option": "review fixed preview on mobile and report PASS / NEEDS FIX",
+    "reason_for_recommendation": "owner corrected that the preview underrepresented dozens of managed candidates, bugs, ideas, and work items",
+    "numbered_options": "1 PASS, 2 NEEDS FIX with missing source/panel, 3 request candidate-register count generation",
     "approval_shortcuts": "PASS / NEEDS FIX",
     "stop_return_options": "stop WEB/Admin and return to infrastructure lane only after explicit request"
   },
   "operating_principles": [
-    {"principle":"Repository First","status":"ACTIVE","meaning":"Repository artifacts define truth, not chat memory"},
-    {"principle":"Evidence First","status":"ACTIVE","meaning":"Progress must be backed by verification or trace"},
-    {"principle":"Artifact First","status":"ACTIVE","meaning":"Critical knowledge enters artifacts, not only conversation"},
-    {"principle":"Execution over planning","status":"ACTIVE","meaning":"When safe, execute the next bounded step"},
-    {"principle":"Run to blocker","status":"ACTIVE","meaning":"Stop only at owner gate, missing source, or real blocker"},
-    {"principle":"Parallel safe lanes","status":"ACTIVE","meaning":"Bundle compatible WEB/Admin, trace, state, and verification tasks"},
-    {"principle":"Minimum Codex friction","status":"ACTIVE","meaning":"Use direct repository work where safe instead of copy-paste loops"},
+    {"principle":"Repository First","status":"ACTIVE","meaning":"Dashboard must follow repository artifacts, not assistant inference"},
+    {"principle":"Evidence First","status":"ACTIVE","meaning":"Public preview claims must be backed by read artifacts or marked as not generated"},
+    {"principle":"Artifact First","status":"ACTIVE","meaning":"Critical work exists in Artifact Register / Candidate Register / roadmap artifacts"},
+    {"principle":"Conversation Is Not Source Of Truth","status":"ACTIVE","meaning":"Owner correction is Discovery Source; repository artifacts remain truth"},
+    {"principle":"Managed Work Coverage Check","status":"ACTIVE","meaning":"Before comparison, current state, candidate register, master index, roadmap, and owner strategic path must be checked"},
+    {"principle":"Do not undercount work","status":"ACTIVE","meaning":"Task List is active execution slice only, not total backlog"},
+    {"principle":"No invented backlog","status":"ACTIVE","meaning":"If exact counts are not generated, mark them as not generated"},
     {"principle":"Stable refresh URL","status":"ACTIVE","meaning":"Future public-preview fixes refresh the same URL"}
   ],
   "work_packages": [
     {"package":"OS Runtime Determinism","status":"PASS","lane":"Runtime","next":"Preserve RTM-067 behavior"},
-    {"package":"Controlled Bridge","status":"PASS","lane":"Bridge","next":"Keep result packet discipline"},
+    {"package":"Managed Work Coverage","status":"ACTIVE / SOURCE-BACKED","lane":"Runtime / Governance","next":"Do not display active task slice as full backlog"},
     {"package":"Admin Web Dashboard","status":"PATCHED / REVIEW","lane":"WEB/Admin","next":"Owner mobile review"},
     {"package":"Capability Management","status":"IN REVIEW","lane":"Capability","next":"Validate dashboard coverage"},
+    {"package":"Candidate / Bug Register Visibility","status":"PARTIAL","lane":"WEB/Admin","next":"Generate sanitized count table later if approved"},
     {"package":"Traceability","status":"PARTIAL","lane":"Evidence","next":"Expand trace rows after review"},
-    {"package":"Language / UX","status":"PATCHED / REVIEW","lane":"Product UX","next":"Validate mobile compression"},
-    {"package":"Trading Evidence","status":"PARKED","lane":"Application","next":"Resume only after OS lane is ready"},
+    {"package":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"},
     {"package":"Automation / Agent Runtime","status":"FUTURE","lane":"Future","next":"Not active without approval"}
   ],
   "capabilities": [
@@ -129,17 +135,17 @@
     {"capability":"Future Automation","layer":"Future","status":"Discovery","readiness":"10%","priority":"P3","next":"Post-MVP automation only"}
   ],
   "language_and_ux": [
-    {"area":"Hebrew RTL","status":"PATCHED / REVIEW","next":"Validate RTL with collapsible mobile panels"},
+    {"area":"Hebrew RTL","status":"PATCHED / REVIEW","next":"Validate RTL with repo-backed managed-work sections"},
     {"area":"English identifiers","status":"ACTIVE","next":"Keep technical IDs stable in English"},
     {"area":"Mobile usability","status":"PATCHED / REVIEW","next":"Owner checks phone view after refresh"},
-    {"area":"Desktop usability","status":"PRESERVED","next":"All panels remain open on wide screens"},
+    {"area":"Dashboard semantics","status":"PATCHED / REVIEW","next":"Verify active slice vs full backlog distinction"},
     {"area":"Multi-language support","status":"NOT STARTED","next":"Define language policy and i18n strategy later"}
   ],
   "tasks": [
+    {"id":"ACTIVE-SLICE-NOT-BACKLOG","name":"This panel is active/recent execution slice only","status":"WARNING / SOURCE-BACKED","lane":"WEB/Admin","next":"Do not treat as all tasks"},
+    {"id":"WEB-MANAGED-WORK-001","name":"Correct dashboard managed-work undercount","status":"PATCHED / OWNER REVIEW","lane":"WEB/Admin","next":"Owner reviews phone view"},
+    {"id":"RTM-045","name":"Managed Work Coverage Check","status":"Artifact PASS / Behavior Validation Pending","lane":"Runtime","next":"Use before Neutral Next-Work Comparison"},
     {"id":"RTM-067","name":"Universal Deterministic Interaction Kernel","status":"PASS","lane":"Runtime","next":"Keep active"},
-    {"id":"BUNDLE-002","name":"Infrastructure Execution Bundle 002","status":"PASS","lane":"Infrastructure","next":"Complete"},
-    {"id":"BRIDGE-001","name":"Controlled Executor Bridge Proof Slice","status":"PASS","lane":"Bridge","next":"Continue"},
-    {"id":"WEB-MOBILE-001","name":"Admin Web mobile density patch","status":"PATCHED / OWNER REVIEW","lane":"WEB/Admin","next":"Owner reviews phone view"},
     {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"}
   ],
   "lanes": [
@@ -151,11 +157,11 @@
     {"name":"Future/Product","status":"DISCOVERY","count":2}
   ],
   "gates": [
-    {"gate":"Owner mobile visual review","status":"OPEN","decision":"PASS / NEEDS FIX"},
+    {"gate":"Owner managed-work preview review","status":"OPEN","decision":"PASS / NEEDS FIX"},
     {"gate":"Trading Evidence","status":"PARKED","decision":"Not now"},
     {"gate":"Private repository publication","status":"REJECTED","decision":"Use public sanitized repo"},
     {"gate":"Automation / command runner","status":"NOT APPROVED","decision":"Future only"},
-    {"gate":"Multi-language product support","status":"NOT DEFINED","decision":"Needs policy later"}
+    {"gate":"Full backlog manager","status":"NOT IMPLEMENTED","decision":"Candidate Register is not scheduler/backlog manager"}
   ],
   "trace": [
     {"id":"TRACE-001","event":"Preview V1 published","result":"PASS"},
@@ -164,7 +170,9 @@
     {"id":"TRACE-004","event":"Admin Web required sections aligned","result":"IN REVIEW"},
     {"id":"TRACE-005","event":"Operating principles and work packages added","result":"IN REVIEW"},
     {"id":"TRACE-006","event":"Owner found mobile view too long / dense","result":"NEEDS FIX"},
-    {"id":"TRACE-007","event":"Mobile compact dashboard patch applied","result":"OWNER REVIEW"}
+    {"id":"TRACE-007","event":"Mobile compact dashboard patch applied","result":"OWNER REVIEW"},
+    {"id":"TRACE-008","event":"Owner corrected managed-work undercount / invented interpretation risk","result":"NEEDS FIX"},
+    {"id":"TRACE-009","event":"Repo-backed managed-work correction applied","result":"OWNER REVIEW"}
   ],
   "repository": {
     "public_preview": "sanitized only",
@@ -173,11 +181,12 @@
     "tokens": "not included",
     "trading_evidence": "not included",
     "capability_data": "sanitized from Capability Roadmap",
-    "mobile_patch": "UI-only compression; no private data added"
+    "managed_work_data": "corrected from Artifact Register / Candidate Register / Managed Work Coverage Check",
+    "exact_candidate_count": "not generated in this patch"
   },
   "next_actions": [
-    {"id":"NEXT-001","label":"Owner refreshes fixed URL on mobile and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
-    {"id":"NEXT-002","label":"If NEEDS FIX, patch the named panel or mobile behavior","lane":"WEB/Admin","recommended":false,"status":"ready"},
-    {"id":"NEXT-003","label":"After PASS, reconcile private register/index if required by CURRENT_STATE","lane":"Infrastructure","recommended":false,"status":"blocked until mobile review PASS"}
+    {"id":"NEXT-001","label":"Owner refreshes fixed URL on mobile and verifies managed-work distinction","lane":"WEB/Admin","recommended":true,"status":"ready"},
+    {"id":"NEXT-002","label":"If still NEEDS FIX, name missing repository source or panel","lane":"WEB/Admin","recommended":false,"status":"ready"},
+    {"id":"NEXT-003","label":"Generate sanitized candidate / bug / idea count table from Candidate Register","lane":"WEB/Admin","recommended":false,"status":"requires bounded generation step"}
   ]
 }
