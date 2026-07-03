@@ -1,12 +1,20 @@
 const stamp = Date.now();
 const qs = new URLSearchParams(window.location.search);
 const stateUrl = qs.get('state') || `state.json?v=${stamp}`;
+const managedUrl = qs.get('managed') || `managed-work.json?v=${stamp}`;
 
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function val(v){if(v===null||v===undefined||v==='')return'unknown';if(Array.isArray(v))return v.length?v.map(x=>`<span class='chip'>${esc(x)}</span>`).join(' '):'None';if(typeof v==='object')return `<pre>${esc(JSON.stringify(v,null,2))}</pre>`;return esc(v)}
 function rows(o){return Object.entries(o||{}).map(([k,v])=>`<div class='row'><div class='label'>${esc(k)}</div><div class='value'>${val(v)}</div></div>`).join('')||'unknown'}
 function table(list,cols){return `<table><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(list||[]).map(r=>`<tr>${cols.map(c=>`<td>${val(r[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
 function set(id, html){const el=document.getElementById(id); if(el) el.innerHTML = html;}
+function renderManaged(m){
+  const summary = rows(m.inventory_summary || {});
+  const groups = table(m.groups,['group','count','source','status','dashboard_role']);
+  const reasons = table(m.why_task_count_looked_small,['reason','meaning']);
+  const next = table(m.next_dashboard_improvements,['id','label','status']);
+  set('managed_work', `<h3>Inventory Summary</h3>${summary}<h3>Groups</h3>${groups}<h3>Why task count looked small</h3>${reasons}<h3>Next improvements</h3>${next}`);
+}
 function render(state){
   set('status', `<div class='pass'>Preview loaded · ${esc(state.version || 'current')} · refresh-safe state</div>`);
   set('kpis', Object.entries(state.summary||{}).map(([k,v])=>`<div class='kpi'><div class='num'>${esc(v)}</div><div class='txt'>${esc(k)}</div></div>`).join(''));
@@ -25,3 +33,7 @@ fetch(stateUrl, {cache:'no-store'})
   .then(r => r.json())
   .then(render)
   .catch(() => set('status', `<div class='bad'>Could not load state.json</div>`));
+fetch(managedUrl, {cache:'no-store'})
+  .then(r => r.json())
+  .then(renderManaged)
+  .catch(() => set('managed_work', `<div class='bad'>Could not load managed-work.json</div>`));
