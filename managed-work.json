@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-03-003-repo-backed-managed-work-correction",
+  "version": "2026-07-03-004-repo-backed-no-invented-counts",
   "source_note": "Sanitized public summary derived from repository-backed RANI_OS artifacts read during this session. Public preview does not expose private source details.",
   "inventory_summary": {
     "governed_artifacts_registered": 126,
@@ -7,6 +7,7 @@
     "capabilities_tracked": 21,
     "candidate_register": "managed entries present / private-detail-sanitized",
     "candidate_register_scope": "explicitly managed candidates only",
+    "exact_candidate_count": "not generated in this patch",
     "full_backlog_manager": "not implemented",
     "scheduler": "not implemented",
     "task_list_semantics": "active execution slice only, not all work"
@@ -22,15 +23,15 @@
   "groups": [
     {"group":"Governed Artifacts","count":"126","source":"ARTIFACT_REGISTER","status":"COMPLETE coverage","dashboard_role":"source-of-truth inventory / registered repository coverage"},
     {"group":"Capabilities","count":"21","source":"CAPABILITY_ROADMAP","status":"tracked","dashboard_role":"capability roadmap and readiness"},
-    {"group":"Managed Candidates / Bugs / Ideas","count":"dozens / private-detail-sanitized / exact count not generated","source":"CANDIDATE_REGISTER","status":"managed register exists","dashboard_role":"must not be collapsed into 5 active tasks"},
-    {"group":"Runtime / RTM work","count":"60+ artifacts and validations across RTM namespace","source":"ARTIFACT_REGISTER + runtime artifacts","status":"partially summarized","dashboard_role":"runtime work history"},
-    {"group":"Behavior PASS records","count":"multiple","source":"BVS / BPER artifacts","status":"tracked","dashboard_role":"evidence of behavior validation"},
-    {"group":"Deferred Work","count":"multiple","source":"Candidate Register / Current State","status":"deferred / not active","dashboard_role":"parked and future work"},
-    {"group":"Application Work","count":"separate from OS","source":"APPLICATION_BOUNDARY_STANDARD","status":"parked / boundary controlled","dashboard_role":"keeps RANI_TRADING separate from RANI_OS"},
+    {"group":"Managed Candidates / Bugs / Ideas","count":"managed entries present / exact count not generated","source":"CANDIDATE_REGISTER","status":"managed register exists","dashboard_role":"must not be collapsed into 5 active tasks"},
+    {"group":"Runtime / RTM work","count":"registered in ARTIFACT_REGISTER","source":"ARTIFACT_REGISTER + runtime artifacts","status":"partially summarized","dashboard_role":"runtime work history"},
+    {"group":"Behavior PASS records","count":"multiple records present / exact count not generated","source":"BVS / BPER artifacts","status":"tracked","dashboard_role":"evidence of behavior validation"},
+    {"group":"Deferred Work","count":"multiple records present / exact count not generated","source":"Candidate Register / Current State","status":"deferred / not active","dashboard_role":"parked and future work"},
+    {"group":"Application Work","count":"separate from OS","source":"APPLICATION_BOUNDARY_STANDARD","status":"parked / boundary controlled","dashboard_role":"keeps application work separate from OS infrastructure"},
     {"group":"Active Execution Slice","count":"5 rows in preview","source":"CURRENT_STATE + recent public review slice","status":"not full backlog","dashboard_role":"current visible action cards only"}
   ],
   "not_full_backlog_warning": [
-    {"warning":"Candidate Register is not a full backlog","repo_basis":"CANDIDATE_REGISTER purpose and out-of-scope sections","dashboard_effect":"Do not present Task List as total work"},
+    {"warning":"Candidate Register is not a full backlog","repo_basis":"CANDIDATE_REGISTER purpose and out-of-scope sections","dashboard_effect":"Do not present Active Execution Slice as total work"},
     {"warning":"Candidate Register is not a scheduler or task manager","repo_basis":"CANDIDATE_REGISTER operating rules","dashboard_effect":"Do not auto-select or auto-prioritize from dashboard"},
     {"warning":"Managed Work Coverage Check must run before Neutral Next-Work Comparison","repo_basis":"MANAGED_WORK_COVERAGE_CHECK rule","dashboard_effect":"Dashboard must show coverage sources, not only active tasks"},
     {"warning":"Capability Roadmap is not a project plan","repo_basis":"CAPABILITY_ROADMAP purpose","dashboard_effect":"Capabilities are system abilities, not task rows"},
