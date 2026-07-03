@@ -1,7 +1,7 @@
 # RANI OS Admin Public Preview
 
 Status:
-Public Preview Package / Refresh-Safe Mobile-Compressed Dashboard
+Public Preview Package / Refresh-Safe Repo-Backed Managed Work Dashboard
 
 Purpose:
 Provide a safe public preview package for the Admin UI without exposing the private `RANI_OS` repository.
@@ -20,25 +20,36 @@ Workflow:
 
 Current dashboard coverage:
 
+- Repo-backed Mobile Summary.
+- Managed Work Coverage.
 - 9 Admin Web planning sections.
 - Capability Inventory from sanitized Capability Roadmap data.
 - Language & UX lane.
 - Operating Principles.
 - Work Packages.
-- Task List.
+- Active Execution Slice.
 - Lane Status.
 - Owner Gates.
 - Traceability.
 - Repository Boundary.
 - Next Actions.
 - Managed Work Inventory.
-- Mobile Review Summary.
+- Review Finding.
+
+Repo-backed correction:
+
+- The preview must not imply that the visible active task slice is the full RANI_OS backlog.
+- The Artifact Register records 126 governed artifacts.
+- The Candidate Register records explicitly managed candidates only.
+- The Candidate Register is not a full backlog, scheduler, discovery engine, or task manager.
+- Managed Work Coverage Check requires checking Current State, Candidate Register, Master Index, roadmap / critical path sources, and explicit owner-stated strategic path when relevant.
+- Exact sanitized candidate / bug / idea counts have not yet been generated in this public preview.
 
 Mobile density patch:
 
 - Adds quick section navigation at the top.
-- Keeps action-oriented panels open on phone.
-- Collapses deep inventory sections by default on phone.
+- Keeps repo-backed summary and managed-work coverage visible on phone.
+- Collapses deep detail sections by default on phone.
 - Renders table data as compact cards on phone.
 - Preserves full expanded dashboard on desktop.
 
