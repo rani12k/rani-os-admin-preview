@@ -1,42 +1,35 @@
+const build = '2026-07-03-CR-003';
 const stamp = Date.now();
-const qs = new URLSearchParams(window.location.search);
-const stateUrl = qs.get('state') || `state.json?v=${stamp}`;
-const managedUrl = qs.get('managed') || `managed-work.json?v=${stamp}`;
-const mobileQuery = window.matchMedia('(max-width:820px)');
-let fullRegisterRows = [];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const row = (k,v) => `<div class='row'><div class='label'>${esc(k)}</div><div class='value'>${esc(v)}</div></div>`;
+const table = (list,cols) => `<table><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(list||[]).map(r=>`<tr>${cols.map(c=>`<td>${esc(r[c] ?? '')}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function val(v){if(v===null||v===undefined||v==='')return'unknown';if(Array.isArray(v))return v.length?v.map(x=>`<span class='chip'>${esc(x)}</span>`).join(' '):'None';if(typeof v==='object')return `<pre>${esc(JSON.stringify(v,null,2))}</pre>`;return esc(v)}
-function rows(o){return Object.entries(o||{}).map(([k,v])=>`<div class='row'><div class='label'>${esc(k)}</div><div class='value'>${val(v)}</div></div>`).join('')||'unknown'}
-function firstPresent(row, cols){return cols.map(c=>row[c]).find(v=>v!==undefined&&v!==null&&v!=='') || 'item'}
-function cardTable(list,cols){return `<div class='cardlist'>${(list||[]).map(r=>`<article class='datacard'><div class='cardtitle'>${val(firstPresent(r,cols))}</div>${cols.map(c=>`<div class='minirow'><div class='minilabel'>${esc(c)}</div><div>${val(r[c]??'')}</div></div>`).join('')}</article>`).join('')}</div>`}
-function table(list,cols){if(mobileQuery.matches)return cardTable(list,cols);return `<table><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(list||[]).map(r=>`<tr>${cols.map(c=>`<td>${val(r[c]??'')}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
-function set(id, html){const el=document.getElementById(id); if(el) el.innerHTML = html;}
-function ensurePanel(id,title,beforeId){if(document.getElementById(id))return;const before=document.getElementById(beforeId);const details=document.createElement('details');details.className='panel full';details.id=id;details.open=true;details.dataset.mobileOpen='true';details.innerHTML=`<summary><h2>${esc(title)}</h2></summary><div class='content'><div id='${id.replace('_panel','')}'></div></div>`;before?.parentNode?.insertBefore(details,before)}
-function kpiStrip(items){return `<div class='kpis'>${items.map(x=>`<div class='kpi'><div class='num'>${esc(x.value)}</div><div class='txt'>${esc(x.label)}</div></div>`).join('')}</div>`}
-function renderExecutive(state){const x=state.executive_mobile||{};const cards=[['Source',x.source_of_truth||'CURRENT_STATE.md wins'],['Active',x.active_work||'unknown'],['Gate',x.owner_gate||'unknown'],['Coverage',x.coverage_warning||'Active slice is not full backlog']];set('executive_summary',`<div class='actionstrip'>${cards.map(([k,v])=>`<div class='actioncard'><div class='title'>${esc(k)}</div><div class='body'>${esc(v)}</div></div>`).join('')}</div><div class='compact-note'>This mobile top panel is repo-backed orientation only. It does not replace Artifact Register, Candidate Register, Capability Roadmap, or Managed Work Coverage Check.</div>`)}
-function renderMobileReview(state){const m=state.mobile_review||{};const cards=[['mode',m.mode||'mobile_density_patch'],['owner finding',m.owner_finding||'mobile view issue'],['patched now',m.patched_now||'repo-backed coverage correction'],['owner check',m.owner_check||'refresh fixed URL on phone']];set('mobile_review',`<div class='mobilegrid'>${cards.map(([k,v])=>`<div class='mobilecard'><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>`)}
-function registerRows(rows){return table(rows,['id','title','category','lifecycle','state','source'])}
-function applySearch(){const q=(document.getElementById('record_search')?.value||'').toLowerCase().trim();const rows=q?fullRegisterRows.filter(r=>Object.values(r).join(' ').toLowerCase().includes(q)):fullRegisterRows;set('register_results',`<div class='compact-note'>Showing ${rows.length} / ${fullRegisterRows.length} visible register rows. This is a sanitized generated list, not the full private source file.</div>${registerRows(rows)}`)}
-function renderManaged(m){
-  ensurePanel('work_register_panel','Ideas / Bugs / Completed / Planned Register','managed_work_panel');
-  ensurePanel('all_records_panel','General Register List + Search','managed_work_panel');
-  const kpis = m.top_kpis || [];
-  set('work_register', `<h3>Quantitative Snapshot</h3>${kpiStrip(kpis)}<h3>Register Categories</h3>${table(m.work_register_groups||[],['category','source','status','examples','dashboard_rule'])}<h3>Representative Register Rows</h3>${table(m.representative_register_rows||[],['id','title','state','source'])}`);
-  fullRegisterRows = m.register_rows || m.representative_register_rows || [];
-  set('all_records', `<h3>Search Records</h3><input id='record_search' placeholder='Search by ID, title, status, category, source...' style='width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--card2);color:var(--text);margin-bottom:10px'><div id='register_results'></div>`);
-  document.getElementById('record_search')?.addEventListener('input', applySearch);
-  applySearch();
-  const summary=rows(m.inventory_summary||{});
-  const sources=table(m.required_source_coverage||[],['source','repo_path','dashboard_role','status']);
-  const groups=table(m.groups,['group','count','source','status','dashboard_role']);
-  const warning=table(m.not_full_backlog_warning||[],['warning','repo_basis','dashboard_effect']);
-  const reasons=table(m.why_task_count_looked_small,['reason','meaning']);
-  const next=table(m.next_dashboard_improvements,['id','label','status']);
-  set('managed_work',`<h3>Inventory Summary</h3>${summary}<h3>Required Source Coverage</h3>${sources}<h3>Managed Work Groups</h3>${groups}<h3>Not a Full Backlog Warning</h3>${warning}<h3>Why the active slice looked small</h3>${reasons}<h3>Next improvements</h3>${next}`)
+function injectStyle(){
+  const css = `:root{--bg:#07111f;--card:#0d1b2e;--card2:#11243a;--text:#e8eef7;--muted:#9fb0c7;--border:#223855;--blue:#60a5fa;--bad:#fb7185}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.4}header{padding:16px;background:#08162a;border-bottom:1px solid var(--border)}h1{margin:0 0 4px;font-size:24px}.sub{color:var(--muted);font-size:14px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.nav a{padding:8px 11px;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--text);text-decoration:none;font-size:13px}main{padding:14px;display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}.span12{grid-column:span 12}.span8{grid-column:span 8}.span6{grid-column:span 6}.span4{grid-column:span 4}.kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}.kpi,.tile{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:10px}.kpi .num{font-weight:bold;font-size:20px;color:var(--blue);direction:ltr;text-align:left}.kpi .txt{font-size:12px;color:var(--muted)}h2{margin:0 0 10px;font-size:17px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.tile b{display:block;color:var(--blue);margin-bottom:5px}.small{font-size:13px;color:var(--muted)}.row{display:grid;grid-template-columns:150px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}.label{color:var(--muted)}.value{direction:ltr;text-align:left;overflow-wrap:anywhere}.bad{color:var(--bad)}table{width:100%;border-collapse:collapse;direction:ltr;text-align:left}th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}th{color:var(--muted);font-weight:normal}.cta{display:inline-block;margin-top:8px;padding:9px 12px;border-radius:10px;background:var(--blue);color:#07111f;text-decoration:none;font-weight:bold}@media(max-width:820px){header{padding:12px}h1{font-size:19px}.sub{font-size:12px}.nav{overflow-x:auto;flex-wrap:nowrap}.nav a{white-space:nowrap}main{padding:8px;grid-template-columns:1fr}.span12,.span8,.span6,.span4{grid-column:1}.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.value{text-align:right;direction:rtl}table{font-size:12px}}`;
+  document.head.innerHTML = `<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>RANI OS Admin Control Room</title><style>${css}</style>`;
 }
-function applyMobileDisclosure(){document.querySelectorAll('details.panel').forEach(d=>{d.open=mobileQuery.matches?d.dataset.mobileOpen==='true':true})}
-function render(state){set('status',`<div class='pass'>Preview loaded · ${esc(state.version||'current')} · searchable work register</div>`);renderExecutive(state);renderMobileReview(state);set('kpis',Object.entries(state.summary||{}).map(([k,v])=>`<div class='kpi'><div class='num'>${esc(v)}</div><div class='txt'>${esc(k)}</div></div>`).join(''));set('operating_principles',table(state.operating_principles,['principle','status','meaning']));set('work_packages',table(state.work_packages,['package','status','lane','next']));['system_status','current_work_item','execution_queue_detail','approval_center','handoff_center','evidence_measurement','incidents_blockers','repository_sync','next_action_controls','repository'].forEach(k=>set(k,rows(state[k])));set('capabilities',table(state.capabilities,['capability','layer','status','readiness','priority','next']));set('language_and_ux',table(state.language_and_ux,['area','status','next']));set('tasks',table(state.tasks,['id','name','status','lane','next']));set('lanes',table(state.lanes,['name','status','count']));set('gates',table(state.gates,['gate','status','decision']));set('trace',table(state.trace,['id','event','result']));set('next_actions',table(state.next_actions,['id','label','lane','recommended','status']));applyMobileDisclosure()}
-fetch(stateUrl,{cache:'no-store'}).then(r=>r.json()).then(render).catch(()=>set('status',`<div class='bad'>Could not load state.json</div>`));
-fetch(managedUrl,{cache:'no-store'}).then(r=>r.json()).then(renderManaged).catch(()=>set('managed_work',`<div class='bad'>Could not load managed-work.json</div>`));
-mobileQuery.addEventListener?.('change',()=>location.reload());
+
+function shell(){
+  document.body.innerHTML = `<header><h1>RANI OS Admin Control Room</h1><div class='sub'>Build ${build} · חדר בקרה ראשי · loaded through fixed index.html</div><nav class='nav'><a href='index.html?v=${stamp}'>Control Room</a><a href='work-register.html?v=${stamp}'>Work Register</a><a href='#gate'>Owner Gate</a><a href='#lanes'>Lanes</a><a href='#health'>Health</a></nav></header><main><section class='span12'><h2>מספרים כמותיים</h2><div class='kpis' id='top_kpis'><div class='bad'>Loading KPIs...</div></div></section><section class='span8'><h2>מצב מערכת עכשיו</h2><div id='control_state'></div></section><section class='span4' id='gate'><h2>Owner Gate</h2><div id='owner_gate'></div></section><section class='span12'><h2>Work Streams</h2><div class='grid' id='work_streams'></div></section><section class='span6' id='lanes'><h2>Lane Status</h2><div id='lane_status'></div></section><section class='span6' id='health'><h2>System Health</h2><div id='system_health'></div></section><section class='span12'><h2>Next Action</h2><div id='next_action'></div><a class='cta' href='work-register.html?v=${stamp}'>פתח Work Register מלא + חיפוש</a></section></main>`;
+}
+
+async function boot(){
+  injectStyle();
+  shell();
+  try{
+    const [state, managed] = await Promise.all([
+      fetch(`state.json?v=${stamp}`, {cache:'no-store'}).then(r=>r.json()),
+      fetch(`managed-work.json?v=${stamp}`, {cache:'no-store'}).then(r=>r.json())
+    ]);
+    document.getElementById('top_kpis').innerHTML = (managed.top_kpis||[]).map(k=>`<div class='kpi'><div class='num'>${esc(k.value)}</div><div class='txt'>${esc(k.label)}</div></div>`).join('');
+    document.getElementById('control_state').innerHTML = row('Source of Truth', state.system_status?.source_of_truth) + row('Active Work', state.current_work_item?.active_work_item) + row('Current Phase', state.current_work_item?.work_item_state) + row('Parked', state.execution_queue_detail?.deferred);
+    document.getElementById('owner_gate').innerHTML = row('Gate', state.approval_center?.current_approval_card) + row('Required Action', state.approval_center?.required_owner_action) + row('Not Approved', state.approval_center?.not_approved);
+    document.getElementById('work_streams').innerHTML = (managed.work_register_groups||[]).map(g=>`<div class='tile'><b>${esc(g.category)}</b><div>${esc(g.status)}</div><div class='small'>${esc(g.examples)}</div></div>`).join('');
+    document.getElementById('lane_status').innerHTML = table(state.lanes||[], ['name','status','count']);
+    document.getElementById('system_health').innerHTML = row('Artifacts', managed.inventory_summary?.governed_artifacts_registered) + row('Capabilities', managed.inventory_summary?.capabilities_tracked) + row('Visible rows', managed.inventory_summary?.visible_register_rows) + row('Exact candidate count', managed.inventory_summary?.exact_candidate_count) + row('Full backlog manager', managed.inventory_summary?.full_backlog_manager) + row('Scheduler', managed.inventory_summary?.scheduler);
+    document.getElementById('next_action').innerHTML = table(state.next_actions||[], ['id','label','lane','recommended','status']);
+  }catch(e){
+    document.getElementById('control_state').innerHTML = `<div class='bad'>Could not load dashboard data</div>`;
+  }
+}
+boot();
