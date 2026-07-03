@@ -10,7 +10,7 @@ function set(id, html){const el=document.getElementById(id); if(el) el.innerHTML
 function render(state){
   set('status', `<div class='pass'>Preview loaded · ${esc(state.version || 'current')} · refresh-safe state</div>`);
   set('kpis', Object.entries(state.summary||{}).map(([k,v])=>`<div class='kpi'><div class='num'>${esc(v)}</div><div class='txt'>${esc(k)}</div></div>`).join(''));
-  ['runtime','current_work','repository'].forEach(k=>set(k, rows(state[k])));
+  ['system_status','current_work_item','execution_queue_detail','approval_center','handoff_center','evidence_measurement','incidents_blockers','repository_sync','next_action_controls','repository'].forEach(k=>set(k, rows(state[k])));
   set('capabilities', table(state.capabilities,['capability','layer','status','readiness','priority','next']));
   set('language_and_ux', table(state.language_and_ux,['area','status','next']));
   set('tasks', table(state.tasks,['id','name','status','lane','next']));
