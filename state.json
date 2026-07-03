@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-03-005-principles-packages",
+  "version": "2026-07-03-006-mobile-density",
   "summary": {
     "total_capabilities": 21,
     "admin_sections": 9,
@@ -10,36 +10,42 @@
     "parked_lanes": 1,
     "blocked_lanes": 1
   },
+  "mobile_review": {
+    "mode": "WEB/Admin mobile density patch",
+    "owner_finding": "Dashboard visible, but mobile view is very long and dense",
+    "patched_now": "Top quick navigation, collapsible panels, mobile card tables, and action-first open sections",
+    "owner_check": "Refresh the same fixed URL on phone and review mobile readability"
+  },
   "system_status": {
     "runtime_status": "active",
     "source_of_truth": "CURRENT_STATE.md wins",
-    "github_master_sync_status": "manual public preview",
+    "github_master_sync_status": "public preview mobile patch applied",
     "web_data_freshness": "manual / refresh-safe JSON",
-    "last_update_time": "2026-07-03 19:26 Israel",
-    "current_mode": "deterministic_infrastructure_execution"
+    "last_update_time": "2026-07-03 20:10 Israel",
+    "current_mode": "deterministic_web_admin_execution"
   },
   "current_work_item": {
-    "active_work_item": "Admin Web dashboard capability and section completeness",
-    "last_completed_work_item": "Public preview V2 dashboard update",
-    "current_next_executable_item": "Owner reviews dashboard completeness and returns PASS or NEEDS FIX",
-    "work_item_state": "IN REVIEW",
-    "related_artifact_path": "PUBLIC_ADMIN_PREVIEW_V2_PATCH_RESULT_001",
-    "action_type": "visual review / measurement / dashboard patch"
+    "active_work_item": "Admin Web mobile density improvement",
+    "last_completed_work_item": "Public preview mobile density patch",
+    "current_next_executable_item": "Owner reviews mobile-compressed dashboard and returns PASS or NEEDS FIX",
+    "work_item_state": "PATCHED / OWNER REVIEW",
+    "related_artifact_path": "00_MASTER/ADMIN_WEB_DASHBOARD_COMPLETION_BUNDLE_001.md",
+    "action_type": "visual review / mobile UX patch / dashboard compression"
   },
   "execution_queue_detail": {
-    "active": "WEB/Admin dashboard completeness",
-    "execution_gaps": "canonical register/index reconciliation, generated state source, full private repo sync",
+    "active": "WEB/Admin dashboard mobile density",
+    "execution_gaps": "generated state source, full private repo sync, deeper artifact/register counts",
     "deferred": "Trading Evidence, automation, broker execution, production readiness",
     "behavior_pass": "RTM-065, RTM-066, RTM-067, bridge proof slice",
     "unknown_or_stale": "public preview is sanitized and not full source of truth"
   },
   "approval_center": {
-    "current_approval_card": "Owner visual review",
+    "current_approval_card": "Owner mobile visual review",
     "approved": "public sanitized preview repository and hosted preview path",
     "not_approved": "publishing private RANI_OS, trading evidence resume, automation, broker execution",
-    "single_use_status": "current visual review only",
+    "single_use_status": "mobile density review only",
     "expiration_conditions": "expires after PASS / NEEDS FIX decision",
-    "required_owner_action": "return PASS or specific NEEDS FIX"
+    "required_owner_action": "return PASS or specific NEEDS FIX after mobile refresh"
   },
   "handoff_center": {
     "handoff_package_status": "Controlled Executor Bridge Proof Slice PASS",
@@ -47,35 +53,35 @@
     "direct_github_master_fetch_used": "YES",
     "github_connector_fetch_file_used": "YES",
     "local_fallback_used": "NO",
-    "files_read": "Capability Roadmap, Admin Web Console planning, public preview files",
-    "files_changed": "rani-os-admin-preview index.html, app.js, state.json",
+    "files_read": "Current State, Operating Protocol, Admin Web completion bundle, public preview files",
+    "files_changed": "rani-os-admin-preview index.html, app.js, state.json, managed-work.json, README.md",
     "boundary_status": "private repo data sanitized"
   },
   "evidence_measurement": {
     "measurement_required": "YES",
-    "measurement_registered": "visual review finding recorded",
+    "measurement_registered": "mobile density owner finding routed to WEB/Admin patch",
     "measured_now": "PARTIAL",
-    "measurement_category": "dashboard completeness / mobile readability / owner effort",
-    "sample_counts": "1 owner screenshot review + repository verification",
-    "classification": "NEEDS FIX -> PATCHED -> IN REVIEW"
+    "measurement_category": "mobile readability / dashboard compression / owner effort",
+    "sample_counts": "1 owner visual review finding + repository verification",
+    "classification": "NEEDS FIX -> MOBILE PATCHED -> OWNER REVIEW"
   },
   "incidents_blockers": {
     "open_incidents": "raw.githack branch cache, private repo Pages unavailable on current plan",
     "severity": "medium",
-    "current_blocker": "owner visual review of updated dashboard",
-    "required_next_safe_action": "refresh fixed URL and inspect new sections",
-    "blocker_affects_execution": "NO for WEB/Admin patching; YES for PASS closure"
+    "current_blocker": "owner mobile visual review of compressed dashboard",
+    "required_next_safe_action": "refresh fixed URL on mobile and inspect compressed panels",
+    "blocker_affects_execution": "NO for patch completion; YES for PASS closure"
   },
   "repository_sync": {
-    "github_master_status": "private repo and public preview repo updated",
+    "github_master_status": "private runtime read verified; public preview repo patched",
     "local_repository_status": "not provided",
     "last_pull_status": "not provided",
     "web_values_synced_or_stale": "manual JSON synced to public preview repo"
   },
   "next_action_controls": {
-    "recommended_option": "review updated dashboard and report PASS / NEEDS FIX",
-    "reason_for_recommendation": "owner found missing capability and language data; patch now includes them",
-    "numbered_options": "1 PASS, 2 NEEDS FIX with missing panel name, 3 request next dashboard field",
+    "recommended_option": "review compressed mobile dashboard and report PASS / NEEDS FIX",
+    "reason_for_recommendation": "owner already found dashboard visible but too long / dense on mobile",
+    "numbered_options": "1 PASS, 2 NEEDS FIX with panel name, 3 request next dashboard field",
     "approval_shortcuts": "PASS / NEEDS FIX",
     "stop_return_options": "stop WEB/Admin and return to infrastructure lane only after explicit request"
   },
@@ -92,10 +98,10 @@
   "work_packages": [
     {"package":"OS Runtime Determinism","status":"PASS","lane":"Runtime","next":"Preserve RTM-067 behavior"},
     {"package":"Controlled Bridge","status":"PASS","lane":"Bridge","next":"Keep result packet discipline"},
-    {"package":"Admin Web Dashboard","status":"IN REVIEW","lane":"WEB/Admin","next":"Owner visual review"},
+    {"package":"Admin Web Dashboard","status":"PATCHED / REVIEW","lane":"WEB/Admin","next":"Owner mobile review"},
     {"package":"Capability Management","status":"IN REVIEW","lane":"Capability","next":"Validate dashboard coverage"},
     {"package":"Traceability","status":"PARTIAL","lane":"Evidence","next":"Expand trace rows after review"},
-    {"package":"Language / UX","status":"PARTIAL","lane":"Product UX","next":"Define i18n and improve mobile tables"},
+    {"package":"Language / UX","status":"PATCHED / REVIEW","lane":"Product UX","next":"Validate mobile compression"},
     {"package":"Trading Evidence","status":"PARKED","lane":"Application","next":"Resume only after OS lane is ready"},
     {"package":"Automation / Agent Runtime","status":"FUTURE","lane":"Future","next":"Not active without approval"}
   ],
@@ -123,17 +129,17 @@
     {"capability":"Future Automation","layer":"Future","status":"Discovery","readiness":"10%","priority":"P3","next":"Post-MVP automation only"}
   ],
   "language_and_ux": [
-    {"area":"Hebrew RTL","status":"PARTIAL","next":"Keep UI RTL-safe and Hebrew-first where possible"},
+    {"area":"Hebrew RTL","status":"PATCHED / REVIEW","next":"Validate RTL with collapsible mobile panels"},
     {"area":"English identifiers","status":"ACTIVE","next":"Keep technical IDs stable in English"},
-    {"area":"Mobile usability","status":"IN REVIEW","next":"Improve table readability on phone"},
-    {"area":"Desktop usability","status":"NOT REVIEWED","next":"Owner desktop review later"},
+    {"area":"Mobile usability","status":"PATCHED / REVIEW","next":"Owner checks phone view after refresh"},
+    {"area":"Desktop usability","status":"PRESERVED","next":"All panels remain open on wide screens"},
     {"area":"Multi-language support","status":"NOT STARTED","next":"Define language policy and i18n strategy later"}
   ],
   "tasks": [
     {"id":"RTM-067","name":"Universal Deterministic Interaction Kernel","status":"PASS","lane":"Runtime","next":"Keep active"},
     {"id":"BUNDLE-002","name":"Infrastructure Execution Bundle 002","status":"PASS","lane":"Infrastructure","next":"Complete"},
     {"id":"BRIDGE-001","name":"Controlled Executor Bridge Proof Slice","status":"PASS","lane":"Bridge","next":"Continue"},
-    {"id":"WEB-DASHBOARD","name":"Admin Web full dashboard inventory","status":"ACTIVE NEXT","lane":"WEB/Admin","next":"Review capability coverage"},
+    {"id":"WEB-MOBILE-001","name":"Admin Web mobile density patch","status":"PATCHED / OWNER REVIEW","lane":"WEB/Admin","next":"Owner reviews phone view"},
     {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"}
   ],
   "lanes": [
@@ -145,7 +151,7 @@
     {"name":"Future/Product","status":"DISCOVERY","count":2}
   ],
   "gates": [
-    {"gate":"Owner visual review","status":"OPEN","decision":"PASS / NEEDS FIX"},
+    {"gate":"Owner mobile visual review","status":"OPEN","decision":"PASS / NEEDS FIX"},
     {"gate":"Trading Evidence","status":"PARKED","decision":"Not now"},
     {"gate":"Private repository publication","status":"REJECTED","decision":"Use public sanitized repo"},
     {"gate":"Automation / command runner","status":"NOT APPROVED","decision":"Future only"},
@@ -156,7 +162,9 @@
     {"id":"TRACE-002","event":"Owner found missing dashboard data","result":"NEEDS FIX"},
     {"id":"TRACE-003","event":"Capability roadmap inventory added","result":"IN REVIEW"},
     {"id":"TRACE-004","event":"Admin Web required sections aligned","result":"IN REVIEW"},
-    {"id":"TRACE-005","event":"Operating principles and work packages added","result":"IN REVIEW"}
+    {"id":"TRACE-005","event":"Operating principles and work packages added","result":"IN REVIEW"},
+    {"id":"TRACE-006","event":"Owner found mobile view too long / dense","result":"NEEDS FIX"},
+    {"id":"TRACE-007","event":"Mobile compact dashboard patch applied","result":"OWNER REVIEW"}
   ],
   "repository": {
     "public_preview": "sanitized only",
@@ -164,10 +172,12 @@
     "secrets": "not included",
     "tokens": "not included",
     "trading_evidence": "not included",
-    "capability_data": "sanitized from Capability Roadmap"
+    "capability_data": "sanitized from Capability Roadmap",
+    "mobile_patch": "UI-only compression; no private data added"
   },
   "next_actions": [
-    {"id":"NEXT-001","label":"Owner reviews full Admin Web dashboard and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
-    {"id":"NEXT-002","label":"If NEEDS FIX, patch missing capability / language / required section panel","lane":"WEB/Admin","recommended":false,"status":"ready"}
+    {"id":"NEXT-001","label":"Owner refreshes fixed URL on mobile and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
+    {"id":"NEXT-002","label":"If NEEDS FIX, patch the named panel or mobile behavior","lane":"WEB/Admin","recommended":false,"status":"ready"},
+    {"id":"NEXT-003","label":"After PASS, reconcile private register/index if required by CURRENT_STATE","lane":"Infrastructure","recommended":false,"status":"blocked until mobile review PASS"}
   ]
 }
