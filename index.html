@@ -54,28 +54,27 @@ pre{white-space:pre-wrap;margin:0}.cardlist{display:grid;gap:10px}.datacard .car
   .mobilegrid,.actionstrip{grid-template-columns:1fr;gap:7px}.actioncard{min-height:0;padding:9px}.actioncard .title{font-size:11px}.actioncard .body{font-size:14px}
   .row{grid-template-columns:1fr;gap:2px;padding:5px 0}.label{font-size:12px}.value{text-align:right;direction:rtl;font-size:13px}
   table{font-size:12px}.datacard{padding:8px}.datacard .minirow{grid-template-columns:78px 1fr}.datacard .minilabel{font-size:11px}.cardlist{gap:7px}
-  .hide-on-mobile-start{display:none}
 }
 </style>
 </head>
 <body>
 <header>
   <h1>RANI OS Admin Preview</h1>
-  <div class="sub">Executive mobile view · full dashboard available below</div>
+  <div class="sub">Repo-backed mobile summary · full dashboard available below</div>
   <nav class="quicknav" aria-label="Dashboard sections">
-    <a href="#executive_panel">Executive</a>
+    <a href="#repo_mobile_panel">Repo Summary</a>
+    <a href="#managed_work_panel">Managed Work</a>
     <a href="#gates_panel">Gate</a>
     <a href="#next_actions_panel">Next</a>
     <a href="#capabilities_panel">Capabilities</a>
-    <a href="#managed_work_panel">Inventory</a>
   </nav>
 </header>
 <main>
-<details class="panel full" id="executive_panel" open data-mobile-open="true"><summary><h2>Executive Mobile View</h2></summary><div class="content"><div id="executive_summary"></div></div></details>
+<details class="panel full" id="repo_mobile_panel" open data-mobile-open="true"><summary><h2>Repo-backed Mobile Summary</h2></summary><div class="content"><div id="executive_summary"></div></div></details>
 <details class="panel full" id="status_panel"><summary><h2>Status</h2></summary><div class="content"><div id="status" class="warn">Loading current state...</div></div></details>
-<details class="panel full" id="mobile_review_panel"><summary><h2>Mobile Review Summary</h2></summary><div class="content"><div id="mobile_review"></div></div></details>
-<details class="panel full" id="summary_panel"><summary><h2>Summary</h2></summary><div class="content"><div class="kpis" id="kpis"></div></div></details>
-<details class="panel full" id="managed_work_panel"><summary><h2>Managed Work Inventory</h2></summary><div class="content"><div id="managed_work"></div></div></details>
+<details class="panel full" id="mobile_review_panel"><summary><h2>Review Finding</h2></summary><div class="content"><div id="mobile_review"></div></div></details>
+<details class="panel full" id="summary_panel"><summary><h2>Repository-backed Counts</h2></summary><div class="content"><div class="kpis" id="kpis"></div></div></details>
+<details class="panel full" id="managed_work_panel" open data-mobile-open="true"><summary><h2>Managed Work Coverage</h2></summary><div class="content"><div id="managed_work"></div></div></details>
 <details class="panel full" id="operating_principles_panel"><summary><h2>Operating Principles</h2></summary><div class="content"><div id="operating_principles"></div></div></details>
 <details class="panel full" id="work_packages_panel"><summary><h2>Work Packages</h2></summary><div class="content"><div id="work_packages"></div></div></details>
 <details class="panel" id="system_status_panel"><summary><h2>System Status</h2></summary><div class="content"><div id="system_status"></div></div></details>
@@ -89,7 +88,7 @@ pre{white-space:pre-wrap;margin:0}.cardlist{display:grid;gap:10px}.datacard .car
 <details class="panel full" id="next_action_controls_panel"><summary><h2>Next Action Controls</h2></summary><div class="content"><div id="next_action_controls"></div></div></details>
 <details class="panel full" id="capabilities_panel"><summary><h2>Capability Inventory</h2></summary><div class="content"><div id="capabilities"></div></div></details>
 <details class="panel" id="language_and_ux_panel"><summary><h2>Language & UX</h2></summary><div class="content"><div id="language_and_ux"></div></div></details>
-<details class="panel full" id="tasks_panel"><summary><h2>Task List</h2></summary><div class="content"><div id="tasks"></div></div></details>
+<details class="panel full" id="tasks_panel"><summary><h2>Active Execution Slice</h2></summary><div class="content"><div id="tasks"></div></div></details>
 <details class="panel" id="lanes_panel"><summary><h2>Lane Status</h2></summary><div class="content"><div id="lanes"></div></div></details>
 <details class="panel" id="gates_panel"><summary><h2>Owner Gates</h2></summary><div class="content"><div id="gates"></div></div></details>
 <details class="panel" id="trace_panel"><summary><h2>Traceability</h2></summary><div class="content"><div id="trace"></div></div></details>
