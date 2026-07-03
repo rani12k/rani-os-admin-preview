@@ -1,34 +1,82 @@
 {
-  "version": "2026-07-03-003-capabilities",
+  "version": "2026-07-03-004-admin-spec",
   "summary": {
     "total_capabilities": 21,
-    "implementation": 5,
-    "architecture": 10,
-    "discovery": 4,
-    "not_started": 1,
-    "parked": 1
+    "admin_sections": 9,
+    "capability_rows": 21,
+    "open_owner_gates": 1,
+    "parked_lanes": 1,
+    "blocked_lanes": 1
   },
-  "runtime": {
-    "mode": "deterministic_infrastructure_execution",
-    "contract": "RTM-067",
-    "status": "active",
-    "source": "sanitized public preview"
+  "system_status": {
+    "runtime_status": "active",
+    "source_of_truth": "CURRENT_STATE.md wins",
+    "github_master_sync_status": "manual public preview",
+    "web_data_freshness": "manual / refresh-safe JSON",
+    "last_update_time": "2026-07-03 19:26 Israel",
+    "current_mode": "deterministic_infrastructure_execution"
   },
-  "current_work": {
-    "active_work_item": "Admin Web dashboard capability inventory",
+  "current_work_item": {
+    "active_work_item": "Admin Web dashboard capability and section completeness",
     "last_completed_work_item": "Public preview V2 dashboard update",
-    "current_phase": "Capability Dashboard Review",
-    "owner_gate": "Visual review",
-    "parked_work": ["Trading Evidence"]
+    "current_next_executable_item": "Owner reviews dashboard completeness and returns PASS or NEEDS FIX",
+    "work_item_state": "IN REVIEW",
+    "related_artifact_path": "PUBLIC_ADMIN_PREVIEW_V2_PATCH_RESULT_001",
+    "action_type": "visual review / measurement / dashboard patch"
   },
-  "tasks": [
-    {"id":"RTM-067","name":"Universal Deterministic Interaction Kernel","status":"PASS","lane":"Runtime","next":"Keep active"},
-    {"id":"BUNDLE-002","name":"Infrastructure Execution Bundle 002","status":"PASS","lane":"Infrastructure","next":"Complete"},
-    {"id":"BRIDGE-001","name":"Controlled Executor Bridge Proof Slice","status":"PASS","lane":"Bridge","next":"Continue"},
-    {"id":"WEB-SCHEMA","name":"Admin Web State Schema","status":"PASS","lane":"WEB/Admin","next":"Use as state contract"},
-    {"id":"WEB-DASHBOARD","name":"Admin Web full dashboard inventory","status":"ACTIVE NEXT","lane":"WEB/Admin","next":"Review capability coverage"},
-    {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"}
-  ],
+  "execution_queue_detail": {
+    "active": "WEB/Admin dashboard completeness",
+    "execution_gaps": "canonical register/index reconciliation, generated state source, full private repo sync",
+    "deferred": "Trading Evidence, automation, broker execution, production readiness",
+    "behavior_pass": "RTM-065, RTM-066, RTM-067, bridge proof slice",
+    "unknown_or_stale": "public preview is sanitized and not full source of truth"
+  },
+  "approval_center": {
+    "current_approval_card": "Owner visual review",
+    "approved": "public sanitized preview repository and hosted preview path",
+    "not_approved": "publishing private RANI_OS, trading evidence resume, automation, broker execution",
+    "single_use_status": "current visual review only",
+    "expiration_conditions": "expires after PASS / NEEDS FIX decision",
+    "required_owner_action": "return PASS or specific NEEDS FIX"
+  },
+  "handoff_center": {
+    "handoff_package_status": "Controlled Executor Bridge Proof Slice PASS",
+    "codex_side_result_status": "manual bridge / GitHub tool bridge only",
+    "direct_github_master_fetch_used": "YES",
+    "github_connector_fetch_file_used": "YES",
+    "local_fallback_used": "NO",
+    "files_read": "Capability Roadmap, Admin Web Console planning, public preview files",
+    "files_changed": "rani-os-admin-preview index.html, app.js, state.json",
+    "boundary_status": "private repo data sanitized"
+  },
+  "evidence_measurement": {
+    "measurement_required": "YES",
+    "measurement_registered": "visual review finding recorded",
+    "measured_now": "PARTIAL",
+    "measurement_category": "dashboard completeness / mobile readability / owner effort",
+    "sample_counts": "1 owner screenshot review + repository verification",
+    "classification": "NEEDS FIX -> PATCHED -> IN REVIEW"
+  },
+  "incidents_blockers": {
+    "open_incidents": "raw.githack branch cache, private repo Pages unavailable on current plan",
+    "severity": "medium",
+    "current_blocker": "owner visual review of updated dashboard",
+    "required_next_safe_action": "refresh fixed URL and inspect new sections",
+    "blocker_affects_execution": "NO for WEB/Admin patching; YES for PASS closure"
+  },
+  "repository_sync": {
+    "github_master_status": "private repo and public preview repo updated",
+    "local_repository_status": "not provided",
+    "last_pull_status": "not provided",
+    "web_values_synced_or_stale": "manual JSON synced to public preview repo"
+  },
+  "next_action_controls": {
+    "recommended_option": "review updated dashboard and report PASS / NEEDS FIX",
+    "reason_for_recommendation": "owner found missing capability and language data; patch now includes them",
+    "numbered_options": "1 PASS, 2 NEEDS FIX with missing panel name, 3 request next dashboard field",
+    "approval_shortcuts": "PASS / NEEDS FIX",
+    "stop_return_options": "stop WEB/Admin and return to infrastructure lane only after explicit request"
+  },
   "capabilities": [
     {"capability":"Repository Governance","layer":"Foundation","status":"Implementation","readiness":"85%","priority":"P0","next":"Maintain register/index alignment"},
     {"capability":"AI Operating Model","layer":"Foundation","status":"Architecture","readiness":"90%","priority":"P0","next":"Synchronize protocols as workflows expand"},
@@ -59,6 +107,13 @@
     {"area":"Desktop usability","status":"NOT REVIEWED","next":"Owner desktop review later"},
     {"area":"Multi-language support","status":"NOT STARTED","next":"Define language policy and i18n strategy later"}
   ],
+  "tasks": [
+    {"id":"RTM-067","name":"Universal Deterministic Interaction Kernel","status":"PASS","lane":"Runtime","next":"Keep active"},
+    {"id":"BUNDLE-002","name":"Infrastructure Execution Bundle 002","status":"PASS","lane":"Infrastructure","next":"Complete"},
+    {"id":"BRIDGE-001","name":"Controlled Executor Bridge Proof Slice","status":"PASS","lane":"Bridge","next":"Continue"},
+    {"id":"WEB-DASHBOARD","name":"Admin Web full dashboard inventory","status":"ACTIVE NEXT","lane":"WEB/Admin","next":"Review capability coverage"},
+    {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"}
+  ],
   "lanes": [
     {"name":"Foundation","status":"ACTIVE","count":3},
     {"name":"Infrastructure","status":"ACTIVE","count":4},
@@ -77,8 +132,8 @@
   "trace": [
     {"id":"TRACE-001","event":"Preview V1 published","result":"PASS"},
     {"id":"TRACE-002","event":"Owner found missing dashboard data","result":"NEEDS FIX"},
-    {"id":"TRACE-003","event":"Preview V2 dashboard completeness","result":"IN REVIEW"},
-    {"id":"TRACE-004","event":"Capability roadmap inventory added","result":"IN REVIEW"}
+    {"id":"TRACE-003","event":"Capability roadmap inventory added","result":"IN REVIEW"},
+    {"id":"TRACE-004","event":"Admin Web required sections aligned","result":"IN REVIEW"}
   ],
   "repository": {
     "public_preview": "sanitized only",
@@ -89,8 +144,7 @@
     "capability_data": "sanitized from Capability Roadmap"
   },
   "next_actions": [
-    {"id":"NEXT-001","label":"Owner reviews capability dashboard and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
-    {"id":"NEXT-002","label":"If NEEDS FIX, patch missing capability / language / status panel","lane":"WEB/Admin","recommended":false,"status":"ready"},
-    {"id":"NEXT-003","label":"Later: connect dashboard to generated repository state instead of hand-maintained JSON","lane":"Infrastructure","recommended":false,"status":"future"}
+    {"id":"NEXT-001","label":"Owner reviews full Admin Web dashboard and returns PASS or NEEDS FIX","lane":"WEB/Admin","recommended":true,"status":"ready"},
+    {"id":"NEXT-002","label":"If NEEDS FIX, patch missing capability / language / required section panel","lane":"WEB/Admin","recommended":false,"status":"ready"}
   ]
 }
