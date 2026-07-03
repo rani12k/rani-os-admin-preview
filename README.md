@@ -1,7 +1,7 @@
 # RANI OS Admin Public Preview
 
 Status:
-Public Preview Package / Refresh-Safe Repo-Backed Managed Work Dashboard
+Public Preview Package / Refresh-Safe Repo-Backed Work Register Dashboard
 
 Purpose:
 Provide a safe public preview package for the Admin UI without exposing the private `RANI_OS` repository.
@@ -21,7 +21,9 @@ Workflow:
 Current dashboard coverage:
 
 - Repo-backed Mobile Summary.
+- Ideas / Bugs / Completed / Planned Register.
 - Managed Work Coverage.
+- Repository-backed Counts.
 - 9 Admin Web planning sections.
 - Capability Inventory from sanitized Capability Roadmap data.
 - Language & UX lane.
@@ -33,22 +35,22 @@ Current dashboard coverage:
 - Traceability.
 - Repository Boundary.
 - Next Actions.
-- Managed Work Inventory.
 - Review Finding.
 
 Repo-backed correction:
 
-- The preview must not imply that the visible active task slice is the full RANI_OS backlog.
+- The preview must not imply that the visible active execution slice is the full RANI_OS backlog.
 - The Artifact Register records 126 governed artifacts.
-- The Candidate Register records explicitly managed candidates only.
+- The Capability Roadmap tracks 21 capabilities.
+- The Candidate Register contains managed ideas, bugs, deferred candidates, planned items, completed items, and behavior-PASS records.
 - The Candidate Register is not a full backlog, scheduler, discovery engine, or task manager.
-- Managed Work Coverage Check requires checking Current State, Candidate Register, Master Index, roadmap / critical path sources, and explicit owner-stated strategic path when relevant.
+- The preview now shows representative register categories and representative source rows instead of collapsing the work into a small task list.
 - Exact sanitized candidate / bug / idea counts have not yet been generated in this public preview.
 
 Mobile density patch:
 
 - Adds quick section navigation at the top.
-- Keeps repo-backed summary and managed-work coverage visible on phone.
+- Keeps repo-backed summary, work-register coverage, and managed-work coverage visible on phone.
 - Collapses deep detail sections by default on phone.
 - Renders table data as compact cards on phone.
 - Preserves full expanded dashboard on desktop.
