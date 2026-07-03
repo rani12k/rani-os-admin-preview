@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-03-001-managed-work",
+  "version": "2026-07-03-002-managed-work-mobile-density",
   "source_note": "Sanitized public summary derived from private RANI_OS registers. Public preview does not expose private source details.",
   "inventory_summary": {
     "governed_artifacts_registered": 126,
@@ -7,7 +7,8 @@
     "admin_web_required_sections": 9,
     "managed_candidate_register": "present / private-detail-sanitized",
     "full_backlog_manager": "not implemented",
-    "scheduler": "not implemented"
+    "scheduler": "not implemented",
+    "mobile_density_patch": "applied / owner review"
   },
   "groups": [
     {"group":"Governed Artifacts","count":"126","source":"ARTIFACT_REGISTER","status":"COMPLETE coverage","dashboard_role":"inventory / source-of-truth coverage"},
@@ -17,19 +18,21 @@
     {"group":"Behavior PASS records","count":"multiple","source":"BVS / BPER artifacts","status":"tracked","dashboard_role":"evidence of behavior validation"},
     {"group":"Deferred Work","count":"multiple","source":"Candidate Register / Current State","status":"deferred / not active","dashboard_role":"parked and future work"},
     {"group":"Application Work","count":"separate from OS","source":"APPLICATION_BOUNDARY_STANDARD","status":"parked / boundary controlled","dashboard_role":"keeps RANI_TRADING separate from RANI_OS"},
-    {"group":"Public Preview Work","count":"active review slice","source":"public preview repo","status":"in review","dashboard_role":"current UI review only"}
+    {"group":"Public Preview Work","count":"active review slice","source":"public preview repo","status":"mobile patch in review","dashboard_role":"current UI review only"}
   ],
   "why_task_count_looked_small": [
     {"reason":"Task List shows active/recent execution slice only","meaning":"It is not the full backlog."},
     {"reason":"Capability Inventory shows system capabilities","meaning":"It is not the same as task records."},
     {"reason":"Artifact Register has 126 governed artifacts","meaning":"Most completed/managed work lives as artifacts, not active tasks."},
     {"reason":"Candidate Register is not a scheduler","meaning":"It stores managed candidates but must not auto-select work."},
-    {"reason":"Public preview is sanitized","meaning":"It summarizes private registers without exposing full internal detail."}
+    {"reason":"Public preview is sanitized","meaning":"It summarizes private registers without exposing full internal detail."},
+    {"reason":"Mobile now collapses deep inventory by default","meaning":"The data remains available, but the phone view starts with action panels."}
   ],
   "next_dashboard_improvements": [
     {"id":"MW-001","label":"Generate a sanitized candidate-register count table","status":"future"},
     {"id":"MW-002","label":"Add artifact-category counts from ARTIFACT_REGISTER","status":"future"},
     {"id":"MW-003","label":"Add closed / active / deferred / behavior-pass totals","status":"future"},
-    {"id":"MW-004","label":"Connect dashboard to generated repository state instead of hand-maintained JSON","status":"future"}
+    {"id":"MW-004","label":"Connect dashboard to generated repository state instead of hand-maintained JSON","status":"future"},
+    {"id":"MW-005","label":"Compress mobile dashboard with collapsible panels and card rows","status":"patched / owner review"}
   ]
 }
