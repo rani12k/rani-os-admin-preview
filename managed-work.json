@@ -1,10 +1,22 @@
 {
-  "version": "2026-07-03-005-work-register-categories",
+  "version": "2026-07-03-006-searchable-work-register",
   "source_note": "Sanitized public summary derived from repository-backed RANI_OS artifacts read during this session. Public preview does not expose private source details.",
+  "top_kpis": [
+    {"label":"Governed Artifacts","value":"126"},
+    {"label":"Capabilities","value":"21"},
+    {"label":"Visible Register Rows","value":"20"},
+    {"label":"Register Categories","value":"8"},
+    {"label":"Active Slice Rows","value":"5"},
+    {"label":"Exact Candidate Count","value":"Not generated"},
+    {"label":"Full Backlog Manager","value":"Not implemented"},
+    {"label":"Scheduler","value":"Not implemented"}
+  ],
   "inventory_summary": {
     "governed_artifacts_registered": 126,
     "artifact_register_coverage_status": "COMPLETE for governed repository artifacts",
     "capabilities_tracked": 21,
+    "visible_register_rows": 20,
+    "register_categories": 8,
     "candidate_register": "managed entries present / private-detail-sanitized",
     "candidate_register_scope": "ideas, bugs, deferred candidates, behavior-pass items, and closed work records are represented in source register",
     "exact_candidate_count": "not generated in this patch",
@@ -20,26 +32,35 @@
     {"category":"Runtime / Ops Improvements","source":"CANDIDATE_REGISTER + RTM artifacts","status":"many completed; some pending validation or deferred","examples":"CAND-OPS-005..009, BUG-047..051, RTM-043..049","dashboard_rule":"Show as runtime operating-system workstream"},
     {"category":"Architecture / Gateway / Orchestration","source":"CANDIDATE_REGISTER CAND-ARCH / CAND-ORCH rows","status":"mixed PASS and Deferred","examples":"CAND-ARCH-003, CAND-ARCH-004, CAND-ORCH-002, CAND-ORCH-003","dashboard_rule":"Show as infrastructure evolution track"},
     {"category":"Governance / Evidence / Progress Integrity","source":"CANDIDATE_REGISTER CAND-GOV rows","status":"mixed PASS and Validation In Progress","examples":"CAND-GOV-001, CAND-GOV-002, CAND-GOV-003","dashboard_rule":"Show as governance/evidence track"},
-    {"category":"Active Execution Slice","source":"CURRENT_STATE + public review state","status":"current small execution view only","examples":"Admin Web managed-work preview review","dashboard_rule":"Never imply this is the full backlog"}
+    {"category":"Active Execution Slice","source":"CURRENT_STATE + public review state","status":"current small execution view only","examples":"Admin Web work-register preview review","dashboard_rule":"Never imply this is the full backlog"}
+  ],
+  "register_rows": [
+    {"id":"BUG-008","title":"Brainstormed ideas are not captured as managed work or deferred items","category":"Bug / Investigation","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-010","title":"External discoveries are not decomposed into separate managed candidates","category":"Bug / Discovery Lifecycle","lifecycle":"Validation","state":"Artifact PASS / Behavior Validation In Progress","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-PACK-001","title":"RANI_OS Useful Package v0.1","category":"Packaging / Runtime Orientation","lifecycle":"Completed","state":"Closed / Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-014","title":"Smart Bootstrap anomaly was not proactively detected","category":"Bug / Runtime Governance","lifecycle":"Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-015","title":"Assistant overclaimed shared detection","category":"Bug / Response Integrity","lifecycle":"Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-018","title":"Activation state consistency partial update bug","category":"Bug / Runtime State","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-EXT-005","title":"External Conversation Assimilation capability","category":"Idea / Discovery Capability","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-EXT-008","title":"Share to RANI_OS external intake entrypoint","category":"Idea / Product Integration","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-KNOW-001","title":"Multi-source knowledge digestion engine","category":"Idea / Knowledge System","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-OPS-008","title":"Ultra Fast Bootstrap / Snapshot-only Rebind Optimization","category":"Runtime / Optimization","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-OPS-009","title":"Proactive Opportunity and Commitment Management","category":"Runtime / Continuity","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-ORCH-003","title":"Parallel Work Lane Orchestration","category":"Orchestration","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-ARCH-004","title":"Capability as Operational Management Unit","category":"Architecture / Capability Management","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-GOV-003","title":"Execution Evidence / Progress Model Integrity","category":"Governance / Evidence","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-LIFECYCLE-001","title":"Lifecycle Review / Human-Calm Inquiry","category":"Idea / Lifecycle Inquiry","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-TIME-001","title":"Temporal Context and Evidence Validity Model","category":"Idea / Temporal Context","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-WORKFLOW-001","title":"Workflow Decomposition Before Estimation","category":"Idea / Planning Reliability","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-049","title":"Read-only runtime overrun violates developer effectiveness budget","category":"Bug / Runtime Performance","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-050","title":"Runtime stalls without partial response or owner-visible stop condition","category":"Bug / Runtime Responsiveness","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"BUG-051","title":"Direct GitHub master fetch_file verification before owner question","category":"Bug / Persistence Verification","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"}
   ],
   "representative_register_rows": [
     {"id":"BUG-008","title":"Brainstormed ideas are not captured as managed work or deferred items","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
     {"id":"BUG-010","title":"External discoveries are not decomposed into separate managed candidates","state":"Artifact PASS / Behavior Validation In Progress","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-PACK-001","title":"RANI_OS Useful Package v0.1","state":"Closed / Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-014","title":"Smart Bootstrap anomaly was not proactively detected","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-015","title":"Assistant overclaimed shared detection","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-018","title":"Activation state consistency partial update bug","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-EXT-005","title":"External Conversation Assimilation capability","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-EXT-008","title":"Share to RANI_OS external intake entrypoint","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-KNOW-001","title":"Multi-source knowledge digestion engine","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-OPS-008","title":"Ultra Fast Bootstrap / Snapshot-only Rebind Optimization","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-OPS-009","title":"Proactive Opportunity and Commitment Management","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-ORCH-003","title":"Parallel Work Lane Orchestration","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-ARCH-004","title":"Capability as Operational Management Unit","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-GOV-003","title":"Execution Evidence / Progress Model Integrity","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-LIFECYCLE-001","title":"Lifecycle Review / Human-Calm Inquiry","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-TIME-001","title":"Temporal Context and Evidence Validity Model","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-WORKFLOW-001","title":"Workflow Decomposition Before Estimation","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"BUG-049","title":"Read-only runtime overrun violates developer effectiveness budget","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
     {"id":"BUG-050","title":"Runtime stalls without partial response or owner-visible stop condition","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
     {"id":"BUG-051","title":"Direct GitHub master fetch_file verification before owner question","state":"Behavior PASS","source":"CANDIDATE_REGISTER"}
@@ -55,17 +76,17 @@
   "groups": [
     {"group":"Governed Artifacts","count":"126","source":"ARTIFACT_REGISTER","status":"COMPLETE coverage","dashboard_role":"source-of-truth inventory / registered repository coverage"},
     {"group":"Capabilities","count":"21","source":"CAPABILITY_ROADMAP","status":"tracked","dashboard_role":"capability roadmap and readiness"},
-    {"group":"Ideas / Bugs / Candidates / Planned / Completed","count":"register rows present / exact count not generated","source":"CANDIDATE_REGISTER","status":"mixed lifecycle states","dashboard_role":"core missing dashboard layer"},
+    {"group":"Ideas / Bugs / Candidates / Planned / Completed","count":"20 visible rows / exact full count not generated","source":"CANDIDATE_REGISTER","status":"mixed lifecycle states","dashboard_role":"core dashboard layer"},
     {"group":"Active Execution Slice","count":"5 rows in preview","source":"CURRENT_STATE + recent public review slice","status":"not full backlog","dashboard_role":"current visible action cards only"}
   ],
   "not_full_backlog_warning": [
-    {"warning":"Active Execution Slice is not the backlog","repo_basis":"Candidate Register and Artifact Register contain much broader managed work","dashboard_effect":"Show separate register categories"},
+    {"warning":"Active Execution Slice is not the backlog","repo_basis":"Candidate Register and Artifact Register contain much broader managed work","dashboard_effect":"Show separate register categories and searchable register list"},
     {"warning":"Candidate Register is not a scheduler or task manager","repo_basis":"CANDIDATE_REGISTER operating rules","dashboard_effect":"Do not auto-select or auto-prioritize from dashboard"},
-    {"warning":"Managed Work Coverage Check must run before Neutral Next-Work Comparison","repo_basis":"MANAGED_WORK_COVERAGE_CHECK rule","dashboard_effect":"Dashboard must show coverage sources, not only active tasks"}
+    {"warning":"Exact full candidate count is not generated","repo_basis":"No bounded count-generation task has been run","dashboard_effect":"Show visible row count only and mark full count as not generated"}
   ],
   "why_task_count_looked_small": [
     {"reason":"Task List showed active/recent execution slice only","meaning":"It was not the full backlog and should not be read that way."},
-    {"reason":"Candidate Register contains ideas, bugs, deferred work, completed work, and planned candidates","meaning":"Those were underrepresented in the previous preview."},
+    {"reason":"Candidate Register contains ideas, bugs, deferred work, completed work, and planned candidates","meaning":"Those are now represented as categories and searchable rows."},
     {"reason":"Artifact Register has 126 governed artifacts","meaning":"Most completed/managed work lives as artifacts, not active task rows."}
   ],
   "next_dashboard_improvements": [
