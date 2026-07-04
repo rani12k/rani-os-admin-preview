@@ -15,9 +15,14 @@ body{margin:0;background:#07111f;color:#e8eef7;font-family:Arial,sans-serif;padd
 <body>
 <div class="loading">Loading RANI OS Admin Control Room...</div>
 <script>
-const s=document.createElement('script');
-s.src='app.js?v='+Date.now();
-document.body.appendChild(s);
+const app=document.createElement('script');
+app.src='app.js?v='+Date.now();
+app.onload=()=>{
+  const mobile=document.createElement('script');
+  mobile.src='mobile-responsive-patch.js?v='+Date.now();
+  document.body.appendChild(mobile);
+};
+document.body.appendChild(app);
 </script>
 </body>
 </html>
