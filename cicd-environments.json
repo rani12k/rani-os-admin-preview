@@ -1,13 +1,13 @@
 {
-  "version":"2026-07-04-CICD-001",
+  "version":"2026-07-04-CICD-002-dev-funnel-defined",
   "source_note":"Public sanitized CI/CD environment model for Admin preview and future app dashboards.",
   "environments":[
     {
       "name":"development",
       "purpose":"Build experimental features without touching the stable public entrypoint.",
-      "status":"DEFINED / NOT FULLY AUTOMATED",
+      "status":"DEFINED / DEV FUNNEL SPEC CREATED",
       "health":"yellow",
-      "url_pattern":"/dev or app-dev.js when implemented",
+      "url_pattern":"dev-funnel-preview.md currently defines the safe dev funnel requirements; executable dev page not yet enabled",
       "promotion_rule":"Developer validation only. No owner PASS required.",
       "rollback_rule":"Delete or ignore failed dev build. Never promote directly to production."
     },
@@ -32,7 +32,7 @@
     {
       "name":"production",
       "purpose":"Stable public Admin preview on GitHub Pages.",
-      "status":"ACTIVE",
+      "status":"ACTIVE / CR-013 STABLE WITH PATCHES",
       "health":"green",
       "url_pattern":"https://rani12k.github.io/rani-os-admin-preview/",
       "promotion_rule":"Only owner-visible PASS builds or safe patches should reach production.",
@@ -40,6 +40,6 @@
     }
   ],
   "required_pipeline":"Build -> Dev -> Test -> Pre-Prod -> Owner PASS -> Production -> Monitor -> Rollback if needed",
-  "current_gap":"The dashboard currently has GitHub Pages production and manual owner-visible testing, but does not yet have automated dev/test/pre-prod gates.",
-  "next_safe_action":"Create isolated dev/test preview for the next Capability Funnel attempt instead of changing production directly."
+  "current_gap":"The dashboard currently has GitHub Pages production and manual owner-visible testing. Dev funnel requirements now exist, but executable dev/test/pre-prod gates are not yet automated.",
+  "next_safe_action":"Build CR-016 Capability Funnel as isolated dev executable after the dev funnel preview requirements are owner-reviewed."
 }
