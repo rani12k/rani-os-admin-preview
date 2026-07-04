@@ -1,0 +1,60 @@
+{
+  "version":"2026-07-04-VERSION-CENTER-001",
+  "source_note":"Public sanitized version center. Private RANI_OS repository remains source of truth.",
+  "applications":[
+    {
+      "app":"RANI_OS",
+      "current_stable":"OS Runtime / Governance active",
+      "latest_build":"OS Infrastructure Execution",
+      "status":"ACTIVE / GOVERNED",
+      "health":"green",
+      "plain_language":"RANI_OS governance and runtime are active. Current focus is Admin Web infrastructure and safe dashboard delivery.",
+      "last_failed_version":"none in current public projection",
+      "rollback_reason":"not applicable",
+      "owner_gate":"Admin Web UI review remains open; Trading Evidence remains parked",
+      "next_candidate":"Generated projection discipline and safe funnel model"
+    },
+    {
+      "app":"ADMIN_WEB",
+      "current_stable":"CR-013 + visual/app patch",
+      "latest_build":"CR-015 Capability Funnel attempt",
+      "status":"STABLE WITH PATCH / FUNNEL ROLLED BACK",
+      "health":"yellow",
+      "plain_language":"Admin Web is stable on GitHub Pages. CR-015 attempted a Capability Funnel but caused a loading failure, so it was rolled back. Visual status and app scope are applied as a safe patch on top of CR-013.",
+      "last_failed_version":"CR-015",
+      "rollback_reason":"Page stuck on Loading RANI OS Admin CR-015 Capability Funnel",
+      "owner_gate":"Do not promote a new funnel build until it passes isolated preview testing",
+      "next_candidate":"CR-016 Safe Funnel Preview in dev/test only"
+    },
+    {
+      "app":"RANI_TRADING",
+      "current_stable":"Architecture / Parked",
+      "latest_build":"No active public build",
+      "status":"PARKED",
+      "health":"yellow",
+      "plain_language":"Trading application exists as architecture and model knowledge, but trading evidence and execution work are parked until owner resumes that lane.",
+      "last_failed_version":"not applicable",
+      "rollback_reason":"not applicable",
+      "owner_gate":"Trading Evidence remains parked",
+      "next_candidate":"Trading Evidence lane only after owner decision"
+    },
+    {
+      "app":"RANI_POOL",
+      "current_stable":"Framework / Not Implemented",
+      "latest_build":"No active build",
+      "status":"NOT IMPLEMENTED",
+      "health":"gray",
+      "plain_language":"Pool controller is recognized as a separate future application. It is not mixed with RANI_OS or RANI_TRADING and is not currently implemented.",
+      "last_failed_version":"not applicable",
+      "rollback_reason":"not applicable",
+      "owner_gate":"Implementation requires explicit owner approval",
+      "next_candidate":"Pool skeleton only when selected"
+    }
+  ],
+  "rules":[
+    "Every app has its own version state.",
+    "Admin Web rollback must not imply RANI_OS rollback.",
+    "Trading and Pool versions are independent from Admin Web versions.",
+    "Failed builds must remain visible in plain language until superseded."
+  ]
+}
