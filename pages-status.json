@@ -1,0 +1,12 @@
+{
+  "version":"2026-07-04-PAGES-001",
+  "status":"GitHub Pages prepared / activation may require repository Settings",
+  "stable_url":"https://rani12k.github.io/rani-os-admin-preview/",
+  "legacy_rawgithack_url":"https://raw.githack.com/rani12k/rani-os-admin-preview/main/index.html",
+  "entrypoint":"index.html",
+  "app_build":"2026-07-04-CR-013",
+  "app_file":"app-cr013.js",
+  "deployment_workflow":".github/workflows/pages.yml",
+  "reason":"RawGitHack served stale index/app/data and could not provide reliable same-URL refresh semantics.",
+  "source_of_truth":"GitHub main branch public preview repository; private RANI_OS remains private source of truth for runtime governance."
+}
