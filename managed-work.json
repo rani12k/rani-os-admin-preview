@@ -1,38 +1,44 @@
 {
-  "version": "2026-07-03-006-searchable-work-register",
-  "source_note": "Sanitized public summary derived from repository-backed RANI_OS artifacts read during this session. Public preview does not expose private source details.",
+  "version": "2026-07-04-007-progress-data-refresh",
+  "source_note": "Sanitized public projection refreshed after Admin Web execution. This is a public snapshot, not private repository source of truth.",
   "top_kpis": [
     {"label":"Governed Artifacts","value":"126"},
     {"label":"Capabilities","value":"21"},
-    {"label":"Visible Register Rows","value":"20"},
-    {"label":"Register Categories","value":"8"},
-    {"label":"Active Slice Rows","value":"5"},
+    {"label":"Visible Register Rows","value":"37"},
+    {"label":"Register Categories","value":"11"},
+    {"label":"Admin Web Rows","value":"8"},
+    {"label":"Operational Bug Rows","value":"5"},
     {"label":"Exact Candidate Count","value":"Not generated"},
-    {"label":"Full Backlog Manager","value":"Not implemented"},
-    {"label":"Scheduler","value":"Not implemented"}
+    {"label":"Full Backlog Manager","value":"Not implemented"}
   ],
   "inventory_summary": {
     "governed_artifacts_registered": 126,
     "artifact_register_coverage_status": "COMPLETE for governed repository artifacts",
     "capabilities_tracked": 21,
-    "visible_register_rows": 20,
-    "register_categories": 8,
+    "visible_register_rows": 37,
+    "register_categories": 11,
+    "admin_web_rows_visible": 8,
+    "operational_bug_rows_visible": 5,
     "candidate_register": "managed entries present / private-detail-sanitized",
-    "candidate_register_scope": "ideas, bugs, deferred candidates, behavior-pass items, and closed work records are represented in source register",
+    "candidate_register_scope": "ideas, bugs, deferred candidates, behavior-pass items, completed work, admin web work, and operational bugs are represented in this public view",
     "exact_candidate_count": "not generated in this patch",
     "full_backlog_manager": "not implemented",
     "scheduler": "not implemented",
-    "active_execution_slice": "not all work"
+    "active_execution_slice": "not all work",
+    "latest_projection_note": "Progress data now includes recent Admin Web and Operational Bug work instead of only older register rows."
   },
   "work_register_groups": [
-    {"category":"Bugs / Defects","source":"CANDIDATE_REGISTER BUG-* rows","status":"mixed: Behavior PASS, Validation In Progress, Deferred","examples":"BUG-008, BUG-010, BUG-013, BUG-014..018, BUG-047..051","dashboard_rule":"Show as managed register category, not as active task slice"},
+    {"category":"Admin Web / Public Preview","source":"CURRENT_STATE + public preview repo","status":"mixed: implemented, owner-confirmed, owner review pending","examples":"ADMIN-WEB-001..008","dashboard_rule":"Show public admin UI work as managed execution history and current review work"},
+    {"category":"Operational Bugs","source":"OPERATIONAL_BUG_SOLUTION_REGISTER","status":"mixed: solved and owner-review pending","examples":"OPS-BUG-001..005","dashboard_rule":"Show operational bugs separately from product features"},
+    {"category":"Bugs / Defects","source":"CANDIDATE_REGISTER BUG-* rows","status":"mixed: Behavior PASS, Validation In Progress, Deferred","examples":"BUG-008, BUG-010, BUG-014..018, BUG-049..051","dashboard_rule":"Show as managed register category, not as active task slice"},
     {"category":"Ideas / Future Capabilities","source":"CANDIDATE_REGISTER CAND-* rows","status":"mostly Managed Deferred / Not Active or future-selected","examples":"CAND-KNOW-001, CAND-EXT-005, CAND-EXT-008, CAND-LIFECYCLE-001, CAND-TIME-001, CAND-WORKFLOW-001","dashboard_rule":"Show as planned/deferred idea pipeline"},
-    {"category":"Completed / Behavior PASS Work","source":"CANDIDATE_REGISTER + ARTIFACT_REGISTER","status":"Artifact PASS / Behavior PASS or Closed","examples":"CAND-PACK-001, CAND-OPS-006, CAND-OPS-007, CAND-ORCH-003, CAND-GOV-002, BUG-049, BUG-050, BUG-051","dashboard_rule":"Show as completed register history, not current active work"},
-    {"category":"Planned / Deferred Work","source":"CANDIDATE_REGISTER Managed Deferred rows","status":"Await Neutral Next-Work Comparison / Owner decision / future selection","examples":"CAND-EXT-002..008, CAND-KNOW-001, CAND-LEGACY-001, CAND-OPS-008, CAND-OPS-009","dashboard_rule":"Show as planned/deferred queue without auto-selection"},
+    {"category":"Completed / Behavior PASS Work","source":"CANDIDATE_REGISTER + ARTIFACT_REGISTER + Admin Web review","status":"Artifact PASS / Behavior PASS or Closed","examples":"CAND-PACK-001, CAND-ORCH-003, CAND-GOV-003, BUG-049, BUG-050, BUG-051, ADMIN-WEB confirmed items","dashboard_rule":"Show as completed register history, not current active work"},
+    {"category":"Planned / Deferred Work","source":"CANDIDATE_REGISTER Managed Deferred rows","status":"Await Neutral Next-Work Comparison / Owner decision / future selection","examples":"CAND-EXT-005, CAND-KNOW-001, CAND-OPS-008, CAND-OPS-009","dashboard_rule":"Show as planned/deferred queue without auto-selection"},
     {"category":"Runtime / Ops Improvements","source":"CANDIDATE_REGISTER + RTM artifacts","status":"many completed; some pending validation or deferred","examples":"CAND-OPS-005..009, BUG-047..051, RTM-043..049","dashboard_rule":"Show as runtime operating-system workstream"},
-    {"category":"Architecture / Gateway / Orchestration","source":"CANDIDATE_REGISTER CAND-ARCH / CAND-ORCH rows","status":"mixed PASS and Deferred","examples":"CAND-ARCH-003, CAND-ARCH-004, CAND-ORCH-002, CAND-ORCH-003","dashboard_rule":"Show as infrastructure evolution track"},
-    {"category":"Governance / Evidence / Progress Integrity","source":"CANDIDATE_REGISTER CAND-GOV rows","status":"mixed PASS and Validation In Progress","examples":"CAND-GOV-001, CAND-GOV-002, CAND-GOV-003","dashboard_rule":"Show as governance/evidence track"},
-    {"category":"Active Execution Slice","source":"CURRENT_STATE + public review state","status":"current small execution view only","examples":"Admin Web work-register preview review","dashboard_rule":"Never imply this is the full backlog"}
+    {"category":"Architecture / Gateway / Orchestration","source":"CANDIDATE_REGISTER CAND-ARCH / CAND-ORCH rows","status":"mixed PASS and Deferred","examples":"CAND-ARCH-004, CAND-ORCH-003, Capability Operational Model","dashboard_rule":"Show as infrastructure evolution track"},
+    {"category":"Governance / Evidence / Progress Integrity","source":"CANDIDATE_REGISTER CAND-GOV rows","status":"mixed PASS and Validation In Progress","examples":"CAND-GOV-001, CAND-GOV-003","dashboard_rule":"Show as governance/evidence track"},
+    {"category":"Capability Operational Management","source":"CURRENT_STATE + Capability artifacts","status":"Artifact created / continuation in progress","examples":"Capability Operational Model V1, Capability Work Mapping, Capability Progress Projection Rules V1","dashboard_rule":"Show as capability-management workstream"},
+    {"category":"Active Execution Slice","source":"CURRENT_STATE + public review state","status":"current execution view only","examples":"Admin Web review, capability lane continuation","dashboard_rule":"Never imply this is the full backlog"}
   ],
   "register_rows": [
     {"id":"BUG-008","title":"Brainstormed ideas are not captured as managed work or deferred items","category":"Bug / Investigation","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
@@ -47,53 +53,61 @@
     {"id":"CAND-OPS-008","title":"Ultra Fast Bootstrap / Snapshot-only Rebind Optimization","category":"Runtime / Optimization","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-OPS-009","title":"Proactive Opportunity and Commitment Management","category":"Runtime / Continuity","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-ORCH-003","title":"Parallel Work Lane Orchestration","category":"Orchestration","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-ARCH-004","title":"Capability as Operational Management Unit","category":"Architecture / Capability Management","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
+    {"id":"CAND-ARCH-004","title":"Capability as Operational Management Unit","category":"Architecture / Capability Management","lifecycle":"Completed","state":"Artifact PASS / Behavior PASS","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-GOV-003","title":"Execution Evidence / Progress Model Integrity","category":"Governance / Evidence","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-LIFECYCLE-001","title":"Lifecycle Review / Human-Calm Inquiry","category":"Idea / Lifecycle Inquiry","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-TIME-001","title":"Temporal Context and Evidence Validity Model","category":"Idea / Temporal Context","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"CAND-WORKFLOW-001","title":"Workflow Decomposition Before Estimation","category":"Idea / Planning Reliability","lifecycle":"Planned / Deferred","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
     {"id":"BUG-049","title":"Read-only runtime overrun violates developer effectiveness budget","category":"Bug / Runtime Performance","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
     {"id":"BUG-050","title":"Runtime stalls without partial response or owner-visible stop condition","category":"Bug / Runtime Responsiveness","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-051","title":"Direct GitHub master fetch_file verification before owner question","category":"Bug / Persistence Verification","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"}
+    {"id":"BUG-051","title":"Direct GitHub master fetch_file verification before owner question","category":"Bug / Persistence Verification","lifecycle":"Completed","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
+    {"id":"ADMIN-WEB-001","title":"Admin Web schema and shell","category":"Admin Web / Public Preview","lifecycle":"Completed","state":"Closed / Behavior PASS","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"ADMIN-WEB-002","title":"Admin Web state JSON and managed work projection","category":"Admin Web / Data Projection","lifecycle":"Completed","state":"Closed / Behavior PASS","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"ADMIN-WEB-003","title":"Admin Web register and master-index deltas","category":"Admin Web / Register Projection","lifecycle":"Completed","state":"Closed / Behavior PASS","source":"RANI_OS"},
+    {"id":"ADMIN-WEB-004","title":"Searchable Work Register page","category":"Admin Web / Search","lifecycle":"Completed","state":"Owner Confirmed / Usable","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"ADMIN-WEB-005","title":"Control Room and Work Register split","category":"Admin Web / Information Architecture","lifecycle":"Completed","state":"Owner Confirmed / Usable","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"ADMIN-WEB-006","title":"Filters restored and Progress expanded","category":"Admin Web / Lists And Filters","lifecycle":"Completed","state":"Owner Confirmed / Usable","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"ADMIN-WEB-007","title":"Counter navigation added","category":"Admin Web / Navigation","lifecycle":"Review","state":"Implemented / Owner Review","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"ADMIN-WEB-008","title":"Mobile responsive table readability","category":"Admin Web / Mobile UX","lifecycle":"Review","state":"Needs Further Design / Not Closed","source":"PUBLIC_PREVIEW_REPO"},
+    {"id":"OPS-BUG-001","title":"RawGitHack refresh cache failure","category":"Operational Bug / Public Preview","lifecycle":"Completed","state":"SOLVED / Prevention Rule Active","source":"OPERATIONAL_BUG_SOLUTION_REGISTER"},
+    {"id":"OPS-BUG-002","title":"Admin tabs duplicated content","category":"Operational Bug / Information Architecture","lifecycle":"Completed","state":"SOLVED / Prevention Rule Active","source":"OPERATIONAL_BUG_SOLUTION_REGISTER"},
+    {"id":"OPS-BUG-003","title":"Filters disappeared after tab refactor","category":"Operational Bug / Filter Regression","lifecycle":"Completed","state":"SOLVED / Prevention Rule Active","source":"OPERATIONAL_BUG_SOLUTION_REGISTER"},
+    {"id":"OPS-BUG-004","title":"Fix was marked solved before owner confirmation","category":"Operational Bug / Process Discipline","lifecycle":"Completed","state":"SOLVED / Prevention Rule Active","source":"OPERATIONAL_BUG_SOLUTION_REGISTER"},
+    {"id":"OPS-BUG-005","title":"Mobile responsive layout remains unstable","category":"Operational Bug / Mobile UX","lifecycle":"Review","state":"Rollback / Needs Safe Design","source":"OPERATIONAL_BUG_SOLUTION_REGISTER"},
+    {"id":"CAP-MODEL-001","title":"Capability Operational Model V1","category":"Capability Operational Management","lifecycle":"Completed","state":"Artifact PASS","source":"RANI_OS"},
+    {"id":"CAP-MAP-001","title":"Capability Work Mapping","category":"Capability Operational Management","lifecycle":"Completed","state":"Artifact PASS","source":"RANI_OS"},
+    {"id":"CAP-PROJ-001","title":"Capability Progress Projection Rules V1","category":"Capability Operational Management","lifecycle":"Completed","state":"Artifact PASS","source":"RANI_OS"},
+    {"id":"DASH-PROJ-001","title":"Public/private dashboard projection boundary","category":"Dashboard Projection / Boundary","lifecycle":"Planned","state":"Next Executable / Not Implemented","source":"CURRENT_STATE"}
   ],
-  "representative_register_rows": [
-    {"id":"BUG-008","title":"Brainstormed ideas are not captured as managed work or deferred items","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-010","title":"External discoveries are not decomposed into separate managed candidates","state":"Artifact PASS / Behavior Validation In Progress","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-PACK-001","title":"RANI_OS Useful Package v0.1","state":"Closed / Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"CAND-KNOW-001","title":"Multi-source knowledge digestion engine","state":"Managed Deferred / Not Active","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-049","title":"Read-only runtime overrun violates developer effectiveness budget","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-050","title":"Runtime stalls without partial response or owner-visible stop condition","state":"Behavior PASS","source":"CANDIDATE_REGISTER"},
-    {"id":"BUG-051","title":"Direct GitHub master fetch_file verification before owner question","state":"Behavior PASS","source":"CANDIDATE_REGISTER"}
-  ],
+  "representative_register_rows": [],
   "required_source_coverage": [
     {"source":"Current State","repo_path":"00_MASTER/CURRENT_STATE.md","dashboard_role":"active work, parked work, owner gate, next executable item","status":"READ"},
     {"source":"Artifact Register","repo_path":"00_MASTER/ARTIFACT_REGISTER.md","dashboard_role":"126 governed artifacts and repository coverage","status":"READ"},
     {"source":"Candidate Register","repo_path":"00_MASTER/CANDIDATE_REGISTER.md","dashboard_role":"ideas / bugs / planned / completed register categories","status":"READ / SANITIZED"},
-    {"source":"Managed Work Coverage Check","repo_path":"00_MASTER/MANAGED_WORK_COVERAGE_CHECK.md","dashboard_role":"rule preventing missing strategic work before neutral comparison","status":"READ"},
-    {"source":"Capability Roadmap","repo_path":"00_MASTER/CAPABILITY_ROADMAP.md","dashboard_role":"highest-level engineering capability roadmap","status":"READ"},
-    {"source":"Master Index","repo_path":"00_MASTER/MASTER_INDEX.md","dashboard_role":"repository orientation; required source for coverage checks","status":"NOT RE-READ IN THIS PATCH"}
+    {"source":"Operational Bug Solution Register","repo_path":"00_MASTER/OPERATIONAL_BUG_SOLUTION_REGISTER.md","dashboard_role":"operational bug rows and prevention rules","status":"READ / SANITIZED"},
+    {"source":"Capability Roadmap","repo_path":"00_MASTER/CAPABILITY_ROADMAP.md","dashboard_role":"capability readiness","status":"READ"}
   ],
   "groups": [
-    {"group":"Governed Artifacts","count":"126","source":"ARTIFACT_REGISTER","status":"COMPLETE coverage","dashboard_role":"source-of-truth inventory / registered repository coverage"},
+    {"group":"Governed Artifacts","count":"126","source":"ARTIFACT_REGISTER","status":"COMPLETE coverage","dashboard_role":"source-of-truth inventory"},
     {"group":"Capabilities","count":"21","source":"CAPABILITY_ROADMAP","status":"tracked","dashboard_role":"capability roadmap and readiness"},
-    {"group":"Ideas / Bugs / Candidates / Planned / Completed","count":"20 visible rows / exact full count not generated","source":"CANDIDATE_REGISTER","status":"mixed lifecycle states","dashboard_role":"core dashboard layer"},
-    {"group":"Active Execution Slice","count":"5 rows in preview","source":"CURRENT_STATE + recent public review slice","status":"not full backlog","dashboard_role":"current visible action cards only"}
+    {"group":"Visible Public Work Records","count":"37","source":"PUBLIC_PROJECTION","status":"mixed lifecycle states","dashboard_role":"dashboard progress source"},
+    {"group":"Admin Web Work","count":"8","source":"PUBLIC_PREVIEW_REPO + CURRENT_STATE","status":"mixed completed/review","dashboard_role":"recent execution visibility"},
+    {"group":"Operational Bugs","count":"5","source":"OPERATIONAL_BUG_SOLUTION_REGISTER","status":"mixed solved/review","dashboard_role":"runtime issue visibility"}
   ],
   "not_full_backlog_warning": [
-    {"warning":"Active Execution Slice is not the backlog","repo_basis":"Candidate Register and Artifact Register contain much broader managed work","dashboard_effect":"Show separate register categories and searchable register list"},
-    {"warning":"Candidate Register is not a scheduler or task manager","repo_basis":"CANDIDATE_REGISTER operating rules","dashboard_effect":"Do not auto-select or auto-prioritize from dashboard"},
-    {"warning":"Exact full candidate count is not generated","repo_basis":"No bounded count-generation task has been run","dashboard_effect":"Show visible row count only and mark full count as not generated"}
+    {"warning":"Public dashboard is a sanitized projection, not private source of truth","repo_basis":"CURRENT_STATE wins","dashboard_effect":"Show projection status and do not claim exact full backlog unless generated"},
+    {"warning":"Active Execution Slice is not the backlog","repo_basis":"Candidate Register and Artifact Register contain broader managed work","dashboard_effect":"Show separate categories and searchable records"},
+    {"warning":"Exact full candidate count is not generated","repo_basis":"No bounded count-generation task has been run","dashboard_effect":"Show visible row count only"}
   ],
   "why_task_count_looked_small": [
-    {"reason":"Task List showed active/recent execution slice only","meaning":"It was not the full backlog and should not be read that way."},
-    {"reason":"Candidate Register contains ideas, bugs, deferred work, completed work, and planned candidates","meaning":"Those are now represented as categories and searchable rows."},
-    {"reason":"Artifact Register has 126 governed artifacts","meaning":"Most completed/managed work lives as artifacts, not active task rows."}
+    {"reason":"managed-work.json was stale at 2026-07-03 and did not include recent Admin Web work","meaning":"Progress numbers did not change while UI work was performed."},
+    {"reason":"UI changes were not automatically written into the public data projection","meaning":"The dashboard needs an explicit generated projection boundary."},
+    {"reason":"Active slice was shown separately from full managed work","meaning":"This is correct only when the UI labels the projection clearly."}
   ],
   "next_dashboard_improvements": [
-    {"id":"MW-001","label":"Generate exact sanitized candidate-register count table from source file","status":"next candidate if owner wants exact counts"},
+    {"id":"DASH-PROJ-001","label":"Create public/private dashboard projection boundary artifact","status":"current next executable"},
+    {"id":"MW-001","label":"Generate exact sanitized candidate-register count table from source file","status":"future / owner-approved only"},
     {"id":"MW-002","label":"Add artifact-category counts from ARTIFACT_REGISTER","status":"future"},
-    {"id":"MW-003","label":"Add lifecycle totals: closed / pass / deferred / active / planned","status":"future"},
-    {"id":"MW-004","label":"Connect dashboard to generated repository state instead of hand-maintained JSON","status":"future"},
-    {"id":"MW-005","label":"Keep active execution slice separate from full managed work","status":"patched / owner review"}
+    {"id":"MW-003","label":"Replace hand-maintained JSON with generated repository projection","status":"future"}
   ]
 }
