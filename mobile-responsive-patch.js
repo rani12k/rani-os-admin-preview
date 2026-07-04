@@ -1,13 +1,21 @@
-const mobileResponsivePatchBuild='2026-07-04-MOBILE-SAME-URL-CR012';
+const mobileResponsivePatchBuild='2026-07-04-MOBILE-MODULE-CR013';
 (function(){
-  function bootSameUrlCR012(){
+  function bootCR013(){
     const current=(document.querySelector('.sub')||{}).textContent||'';
-    if(current.includes('CR-012')) return;
-    document.documentElement.style.margin='0';
-    document.body.style.margin='0';
+    if(current.includes('CR-013')) return;
+    if(document.querySelector('[data-cr013-module]')) return;
     document.body.style.background='#07111f';
-    document.body.innerHTML='<iframe title="RANI OS Admin CR012" src="cr012.html?same_url_boot=20260704" style="position:fixed;inset:0;width:100vw;height:100vh;border:0;background:#07111f;"></iframe>';
+    const loading=document.createElement('div');
+    loading.textContent='Loading CR-013 Capability Mapping Coverage...';
+    loading.style.cssText='margin:12px;padding:12px;border:1px solid #223855;border-radius:12px;background:#0d1b2e;color:#e8eef7;font-family:Arial,sans-serif';
+    document.body.prepend(loading);
+    const s=document.createElement('script');
+    s.type='module';
+    s.dataset.cr013Module='true';
+    s.src='app-cr013.js?module_boot=CR013_CAPABILITY_MAPPING_COVERAGE_'+Date.now();
+    s.onload=function(){loading.remove();};
+    document.body.appendChild(s);
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(bootSameUrlCR012,800));
-  else setTimeout(bootSameUrlCR012,800);
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(bootCR013,500));
+  else setTimeout(bootCR013,500);
 })();
