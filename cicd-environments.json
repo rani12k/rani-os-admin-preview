@@ -1,0 +1,45 @@
+{
+  "version":"2026-07-04-CICD-001",
+  "source_note":"Public sanitized CI/CD environment model for Admin preview and future app dashboards.",
+  "environments":[
+    {
+      "name":"development",
+      "purpose":"Build experimental features without touching the stable public entrypoint.",
+      "status":"DEFINED / NOT FULLY AUTOMATED",
+      "health":"yellow",
+      "url_pattern":"/dev or app-dev.js when implemented",
+      "promotion_rule":"Developer validation only. No owner PASS required.",
+      "rollback_rule":"Delete or ignore failed dev build. Never promote directly to production."
+    },
+    {
+      "name":"testing",
+      "purpose":"Check loading, mobile layout, navigation, visual status, app scope, and data integrity.",
+      "status":"DEFINED / MANUAL",
+      "health":"yellow",
+      "url_pattern":"/test or app-test.js when implemented",
+      "promotion_rule":"Must pass basic smoke tests before pre-prod.",
+      "rollback_rule":"Failed test build stays out of pre-prod/prod."
+    },
+    {
+      "name":"pre-prod",
+      "purpose":"Owner-visible candidate preview before production.",
+      "status":"DEFINED / NOT IMPLEMENTED",
+      "health":"gray",
+      "url_pattern":"/preprod or app-preprod.js when implemented",
+      "promotion_rule":"Requires owner-visible PASS.",
+      "rollback_rule":"Revert to last owner-approved candidate."
+    },
+    {
+      "name":"production",
+      "purpose":"Stable public Admin preview on GitHub Pages.",
+      "status":"ACTIVE",
+      "health":"green",
+      "url_pattern":"https://rani12k.github.io/rani-os-admin-preview/",
+      "promotion_rule":"Only owner-visible PASS builds or safe patches should reach production.",
+      "rollback_rule":"Return entrypoint to last stable build and disable failed build files."
+    }
+  ],
+  "required_pipeline":"Build -> Dev -> Test -> Pre-Prod -> Owner PASS -> Production -> Monitor -> Rollback if needed",
+  "current_gap":"The dashboard currently has GitHub Pages production and manual owner-visible testing, but does not yet have automated dev/test/pre-prod gates.",
+  "next_safe_action":"Create isolated dev/test preview for the next Capability Funnel attempt instead of changing production directly."
+}
