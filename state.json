@@ -1,115 +1,110 @@
 {
-  "version": "2026-07-03-008-repo-backed-no-invented-counts",
+  "version": "2026-07-04-009-runtime-true-state-projection",
   "summary": {
     "registered_artifacts": 126,
     "capabilities": 21,
-    "admin_sections": 9,
-    "active_execution_slice_rows": 5,
-    "candidate_register": "managed entries present",
-    "full_backlog_manager": "not implemented",
+    "visible_register_rows": 37,
+    "admin_web_rows": 8,
+    "operational_bug_rows": 5,
     "parked_lanes": 1,
     "owner_gate_open": 1
   },
   "executive_mobile": {
     "source_of_truth": "CURRENT_STATE.md wins",
-    "active_work": "Admin Web mobile visual review",
-    "owner_gate": "Review fixed preview URL on mobile: PASS / NEEDS FIX",
-    "coverage_warning": "Active Execution Slice is not full backlog"
+    "active_work": "Capability operational management lane continuation",
+    "owner_gate": "Admin Web not closed as final; owner decision still required before final closure",
+    "coverage_warning": "Public dashboard is a sanitized projection, not private source of truth"
   },
   "mobile_review": {
-    "mode": "WEB/Admin repo-backed managed-work correction",
-    "owner_finding": "Preview under-represented managed work by showing a small active execution slice without clearly separating it from Artifact Register / Candidate Register / Capability Roadmap coverage",
-    "patched_now": "Active Execution Slice is now separated from Managed Work Coverage; exact candidate count is explicitly marked as not generated",
-    "owner_check": "Refresh the same fixed URL and verify it no longer implies that 5 rows equal the full work backlog"
+    "mode": "WEB/Admin public projection review",
+    "owner_finding": "Control Room did not reflect true runtime state while work was executing",
+    "patched_now": "Public state projection refreshed to show current runtime lane, stale-data warning, and projection limits",
+    "owner_check": "Refresh preview and verify Control Room no longer looks like the old Admin Web review state"
   },
   "system_status": {
     "runtime_status": "active",
     "source_of_truth": "CURRENT_STATE.md wins",
-    "github_master_sync_status": "private runtime and managed-work sources read before patch",
-    "web_data_freshness": "manual / refresh-safe JSON",
-    "last_update_time": "2026-07-03 20:50 Israel",
-    "current_mode": "deterministic_web_admin_execution"
+    "github_master_sync_status": "private CURRENT_STATE read before projection refresh",
+    "web_data_freshness": "manual sanitized projection refreshed 2026-07-04",
+    "last_update_time": "2026-07-04 09:20 Israel",
+    "current_mode": "infrastructure_execution / capability_lane_continuation",
+    "projection_status": "PUBLIC SNAPSHOT / NOT SOURCE OF TRUTH"
   },
   "current_work_item": {
-    "active_work_item": "Admin Web managed-work coverage correction",
-    "last_completed_work_item": "Public preview repo-backed managed-work correction patch",
-    "current_next_executable_item": "Owner reviews whether mobile preview now reflects repo-backed managed work without undercounting",
-    "work_item_state": "PATCHED / OWNER REVIEW",
-    "related_artifact_path": "MANAGED_WORK_COVERAGE_CHECK + CANDIDATE_REGISTER + ARTIFACT_REGISTER",
-    "action_type": "visual review / managed work coverage / mobile UX patch"
+    "active_work_item": "Capability operational management lane continuation",
+    "last_completed_work_item": "CAND-ARCH-004 selected by Neutral Next-Work Comparison and executed through Capability Operational Model V1, Capability Work Mapping, and Capability Progress Projection Rules V1",
+    "current_next_executable_item": "Create public/private dashboard projection boundary artifact that defines exactly which data may appear in public Admin preview and which data must remain private",
+    "work_item_state": "Execution In Progress / Public Projection Refreshed",
+    "related_artifact_path": "00_MASTER/CURRENT_STATE.md",
+    "action_type": "infrastructure execution / dashboard projection boundary"
   },
   "execution_queue_detail": {
-    "active": "WEB/Admin dashboard managed-work coverage correction",
-    "execution_gaps": "generated state source, private repo sync, sanitized candidate-register count table, artifact-category count table",
+    "active": "Capability operational management lane continuation",
+    "execution_gaps": "public/private projection boundary, generated projection process, exact candidate count generation, artifact category counts",
     "deferred": "Trading Evidence, automation, production readiness",
-    "behavior_pass": "RTM-065, RTM-066, RTM-067, BUG-008 Managed Work Coverage Check",
-    "critical_warning": "Candidate Register is not full backlog, scheduler, discovery engine, or task manager"
+    "behavior_pass": "RTM-065, RTM-066, RTM-067, capability operational model artifacts",
+    "critical_warning": "Public preview must never claim to be live source of truth"
   },
   "approval_center": {
-    "current_approval_card": "Owner mobile visual review after managed-work correction",
-    "approved": "public sanitized preview repository and hosted preview path",
-    "not_approved": "publishing private RANI_OS or resuming parked lanes",
-    "single_use_status": "repo-backed managed-work correction review only",
-    "expiration_conditions": "expires after PASS / NEEDS FIX decision",
-    "required_owner_action": "return PASS or specific NEEDS FIX after mobile refresh"
+    "current_approval_card": "Admin Web remains open; public projection boundary required before final closure",
+    "approved": "continue infrastructure execution and public Admin preview review",
+    "not_approved": "closing Admin Web as final, publishing private internals, resuming Trading Evidence without owner decision",
+    "single_use_status": "projection review only",
+    "expiration_conditions": "expires after owner PASS / NEEDS FIX on public Admin preview or explicit next lane decision",
+    "required_owner_action": "optional PASS / NEEDS FIX; otherwise execution continues on projection boundary"
   },
   "handoff_center": {
-    "handoff_package_status": "Controlled Executor Bridge Proof Slice PASS",
-    "codex_side_result_status": "manual bridge / GitHub tool bridge only",
+    "handoff_package_status": "manual GitHub bridge execution",
+    "codex_side_result_status": "not used in this public projection refresh",
     "direct_github_master_fetch_used": "YES",
     "github_connector_fetch_file_used": "YES",
     "local_fallback_used": "NO",
-    "files_read": "CURRENT_STATE, CANDIDATE_REGISTER, ARTIFACT_REGISTER, MANAGED_WORK_COVERAGE_CHECK, CAPABILITY_ROADMAP, public preview files",
-    "files_changed": "public preview index.html, app.js, state.json, managed-work.json, README.md; private CURRENT_STATE and completion bundle updated as needed",
-    "boundary_status": "private repo details sanitized; dashboard no longer claims active execution slice is full backlog"
+    "files_read": "CURRENT_STATE, managed-work public projection, state public projection",
+    "files_changed": "public preview state.json, managed-work.json",
+    "boundary_status": "private repo details sanitized"
   },
   "evidence_measurement": {
     "measurement_required": "YES",
-    "measurement_registered": "owner correction: preview omitted or undercounted tasks, ideas, bugs, and managed work",
+    "measurement_registered": "owner correction: Control Room did not reflect true runtime execution state",
     "measured_now": "PARTIAL",
-    "measurement_category": "managed work coverage / dashboard correctness / mobile readability",
-    "sample_counts": "126 governed artifacts; 21 capabilities; Candidate Register managed entries present; exact public candidate count not generated yet",
-    "classification": "NEEDS FIX -> REPO-BACKED CORRECTION PATCHED -> OWNER REVIEW"
+    "measurement_category": "dashboard correctness / projection freshness / runtime truth",
+    "sample_counts": "37 visible rows, 8 Admin Web rows, 5 operational bug rows, 21 capabilities, 126 governed artifacts",
+    "classification": "NEEDS FIX -> DATA PROJECTION REFRESHED -> OWNER REVIEW"
   },
   "incidents_blockers": {
-    "open_incidents": "raw.githack branch cache, private repo Pages unavailable on current plan, public preview uses sanitized manual JSON",
+    "open_incidents": "public projection was stale while runtime execution advanced",
     "severity": "medium",
-    "current_blocker": "owner review of repo-backed managed-work correction",
-    "required_next_safe_action": "refresh fixed URL and check whether active-slice / candidate-register / backlog distinction is now clear",
-    "blocker_affects_execution": "NO for patch completion; YES for PASS closure"
+    "current_blocker": "public/private projection boundary artifact not yet created",
+    "required_next_safe_action": "create projection boundary artifact before final Admin Web closure",
+    "blocker_affects_execution": "NO for infrastructure work; YES for final dashboard trust claim"
   },
   "repository_sync": {
-    "github_master_status": "private runtime and managed-work source artifacts read; public preview patched",
+    "github_master_status": "CURRENT_STATE read and public projection refreshed",
     "local_repository_status": "not provided",
     "last_pull_status": "not provided",
-    "web_values_synced_or_stale": "manual JSON corrected from repository-backed source reads"
+    "web_values_synced_or_stale": "refreshed but still manual; generated projection not implemented"
   },
   "next_action_controls": {
-    "recommended_option": "review fixed preview on mobile and report PASS / NEEDS FIX",
-    "reason_for_recommendation": "owner corrected that the preview underrepresented managed candidates, bugs, ideas, and work items",
-    "numbered_options": "1 PASS, 2 NEEDS FIX with missing source/panel, 3 request candidate-register count generation",
+    "recommended_option": "continue to public/private dashboard projection boundary artifact",
+    "reason_for_recommendation": "Control Room must distinguish source-of-truth runtime state from public sanitized projection",
+    "numbered_options": "1 continue projection boundary, 2 pause for owner review, 3 request exact public count generation",
     "approval_shortcuts": "PASS / NEEDS FIX",
-    "stop_return_options": "stop WEB/Admin and return to infrastructure lane only after explicit request"
+    "stop_return_options": "Trading Evidence remains parked"
   },
   "operating_principles": [
     {"principle":"Repository First","status":"ACTIVE","meaning":"Dashboard must follow repository artifacts, not assistant inference"},
     {"principle":"Evidence First","status":"ACTIVE","meaning":"Public preview claims must be backed by read artifacts or marked as not generated"},
-    {"principle":"Artifact First","status":"ACTIVE","meaning":"Critical work exists in Artifact Register / Candidate Register / roadmap artifacts"},
-    {"principle":"Conversation Is Not Source Of Truth","status":"ACTIVE","meaning":"Owner correction is Discovery Source; repository artifacts remain truth"},
-    {"principle":"Managed Work Coverage Check","status":"ACTIVE","meaning":"Before comparison, current state, candidate register, master index, roadmap, and owner strategic path must be checked"},
-    {"principle":"Do not undercount work","status":"ACTIVE","meaning":"Active Execution Slice is not total backlog"},
-    {"principle":"No invented backlog","status":"ACTIVE","meaning":"If exact counts are not generated, mark them as not generated"},
-    {"principle":"Stable refresh URL","status":"ACTIVE","meaning":"Future public-preview fixes refresh the same URL"}
+    {"principle":"Artifact First","status":"ACTIVE","meaning":"Critical work exists in repository artifacts"},
+    {"principle":"Conversation Is Not Source Of Truth","status":"ACTIVE","meaning":"Owner correction is input; repository artifacts remain truth"},
+    {"principle":"Public Projection Is Not Source Of Truth","status":"ACTIVE","meaning":"Control Room must label projection status and freshness"}
   ],
   "work_packages": [
     {"package":"OS Runtime Determinism","status":"PASS","lane":"Runtime","next":"Preserve RTM-067 behavior"},
-    {"package":"Managed Work Coverage","status":"ACTIVE / SOURCE-BACKED","lane":"Runtime / Governance","next":"Do not display active execution slice as full backlog"},
-    {"package":"Admin Web Dashboard","status":"PATCHED / REVIEW","lane":"WEB/Admin","next":"Owner mobile review"},
-    {"package":"Capability Management","status":"IN REVIEW","lane":"Capability","next":"Validate dashboard coverage"},
-    {"package":"Candidate / Bug Register Visibility","status":"PARTIAL","lane":"WEB/Admin","next":"Generate sanitized count table later if approved"},
-    {"package":"Traceability","status":"PARTIAL","lane":"Evidence","next":"Expand trace rows after review"},
-    {"package":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"},
-    {"package":"Automation / Agent Runtime","status":"FUTURE","lane":"Future","next":"Not active without approval"}
+    {"package":"Admin Web Dashboard","status":"OPEN / REVIEW","lane":"WEB/Admin","next":"projection boundary artifact before final closure"},
+    {"package":"Capability Management","status":"IN EXECUTION","lane":"Capability","next":"continue capability lane after projection boundary"},
+    {"package":"Candidate / Bug Register Visibility","status":"PARTIAL","lane":"WEB/Admin","next":"exact public count generation only if owner approves"},
+    {"package":"Traceability","status":"PARTIAL","lane":"Evidence","next":"expand trace rows after projection boundary"},
+    {"package":"Trading Evidence","status":"PARKED","lane":"Application","next":"do not run yet"}
   ],
   "capabilities": [
     {"capability":"Repository Governance","layer":"Foundation","status":"Implementation","readiness":"85%","priority":"P0","next":"Maintain register/index alignment"},
@@ -134,56 +129,15 @@
     {"capability":"Recovery","layer":"Infrastructure","status":"Implementation","readiness":"55%","priority":"P1","next":"Recovery validation checklist"},
     {"capability":"Future Automation","layer":"Future","status":"Discovery","readiness":"10%","priority":"P3","next":"Post-MVP automation only"}
   ],
-  "language_and_ux": [
-    {"area":"Hebrew RTL","status":"PATCHED / REVIEW","next":"Validate RTL with repo-backed managed-work sections"},
-    {"area":"English identifiers","status":"ACTIVE","next":"Keep technical IDs stable in English"},
-    {"area":"Mobile usability","status":"PATCHED / REVIEW","next":"Owner checks phone view after refresh"},
-    {"area":"Dashboard semantics","status":"PATCHED / REVIEW","next":"Verify active execution slice vs full backlog distinction"},
-    {"area":"Multi-language support","status":"NOT STARTED","next":"Define language policy and i18n strategy later"}
-  ],
-  "tasks": [
-    {"id":"ACTIVE-SLICE-NOT-BACKLOG","name":"This panel is active/recent execution slice only","status":"WARNING / SOURCE-BACKED","lane":"WEB/Admin","next":"Do not treat as all tasks"},
-    {"id":"WEB-MANAGED-WORK-001","name":"Correct dashboard managed-work undercount","status":"PATCHED / OWNER REVIEW","lane":"WEB/Admin","next":"Owner reviews phone view"},
-    {"id":"RTM-045","name":"Managed Work Coverage Check","status":"Artifact PASS / Behavior Validation Pending","lane":"Runtime","next":"Use before Neutral Next-Work Comparison"},
-    {"id":"RTM-067","name":"Universal Deterministic Interaction Kernel","status":"PASS","lane":"Runtime","next":"Keep active"},
-    {"id":"TRADING","name":"Trading Evidence","status":"PARKED","lane":"Application","next":"Do not run yet"}
-  ],
   "lanes": [
-    {"name":"Foundation","status":"ACTIVE","count":3},
-    {"name":"Infrastructure","status":"ACTIVE","count":4},
-    {"name":"Data/Context/Decision","status":"ARCHITECTURE","count":5},
-    {"name":"Execution","status":"DISCOVERY","count":2},
-    {"name":"Evidence/Learning","status":"PARTIAL","count":5},
-    {"name":"Future/Product","status":"DISCOVERY","count":2}
+    {"name":"Admin Web","status":"OPEN / REVIEW","count":"1"},
+    {"name":"Capability Management","status":"ACTIVE","count":"1"},
+    {"name":"Trading Evidence","status":"PARKED","count":"1"},
+    {"name":"Projection Boundary","status":"NEXT EXECUTABLE","count":"1"}
   ],
-  "gates": [
-    {"gate":"Owner managed-work preview review","status":"OPEN","decision":"PASS / NEEDS FIX"},
-    {"gate":"Trading Evidence","status":"PARKED","decision":"Not now"},
-    {"gate":"Private repository publication","status":"REJECTED","decision":"Use public sanitized repo"},
-    {"gate":"Automation / command runner","status":"NOT APPROVED","decision":"Future only"},
-    {"gate":"Full backlog manager","status":"NOT IMPLEMENTED","decision":"Candidate Register is not scheduler/backlog manager"}
-  ],
-  "trace": [
-    {"id":"TRACE-001","event":"Preview V1 published","result":"PASS"},
-    {"id":"TRACE-002","event":"Owner found missing dashboard data","result":"NEEDS FIX"},
-    {"id":"TRACE-003","event":"Capability roadmap inventory added","result":"IN REVIEW"},
-    {"id":"TRACE-004","event":"Admin Web required sections aligned","result":"IN REVIEW"},
-    {"id":"TRACE-005","event":"Operating principles and work packages added","result":"IN REVIEW"},
-    {"id":"TRACE-006","event":"Owner found mobile view too long / dense","result":"NEEDS FIX"},
-    {"id":"TRACE-007","event":"Mobile compact dashboard patch applied","result":"OWNER REVIEW"},
-    {"id":"TRACE-008","event":"Owner corrected managed-work undercount / invented interpretation risk","result":"NEEDS FIX"},
-    {"id":"TRACE-009","event":"Repo-backed managed-work correction applied","result":"OWNER REVIEW"}
-  ],
-  "repository": {
-    "public_preview": "sanitized only",
-    "private_source": "not included",
-    "capability_data": "sanitized from Capability Roadmap",
-    "managed_work_data": "corrected from Artifact Register / Candidate Register / Managed Work Coverage Check",
-    "exact_candidate_count": "not generated in this patch"
-  },
   "next_actions": [
-    {"id":"NEXT-001","label":"Owner refreshes fixed URL on mobile and verifies managed-work distinction","lane":"WEB/Admin","recommended":true,"status":"ready"},
-    {"id":"NEXT-002","label":"If still NEEDS FIX, name missing repository source or panel","lane":"WEB/Admin","recommended":false,"status":"ready"},
-    {"id":"NEXT-003","label":"Generate sanitized candidate / bug / idea count table from Candidate Register","lane":"WEB/Admin","recommended":false,"status":"requires bounded generation step"}
+    {"id":"DASH-PROJ-001","label":"Create public/private dashboard projection boundary artifact","lane":"WEB/Admin / Governance","recommended":"YES","status":"NEXT"},
+    {"id":"COUNT-GEN-001","label":"Generate exact sanitized candidate-register count table","lane":"WEB/Admin","recommended":"NO","status":"OWNER APPROVAL REQUIRED"},
+    {"id":"TRD-EVD-001","label":"Resume Trading Evidence","lane":"Trading","recommended":"NO","status":"PARKED"}
   ]
 }
