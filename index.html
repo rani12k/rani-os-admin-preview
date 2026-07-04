@@ -17,7 +17,7 @@ body{margin:0;background:#07111f;color:#e8eef7;font-family:Arial,sans-serif;padd
 <script>
 function loadScript(src){const s=document.createElement('script');s.src=src+'?v='+Date.now();document.body.appendChild(s);return s;}
 const app=loadScript('app.js');
-app.onload=()=>{const mobile=loadScript('mobile-responsive-patch.js');mobile.onload=()=>loadScript('admin-navigation-patch.js');};
+app.onload=()=>loadScript('mobile-responsive-patch.js');
 </script>
 </body>
 </html>
