@@ -15,22 +15,26 @@ Fixed preview URL:
 
 `https://raw.githack.com/rani12k/rani-os-admin-preview/main/index.html`
 
-Cache-busting review URLs:
+Operational cache rule:
 
-- `index.html?v=20260703-cr001`
-- `work-register.html?v=20260703-wr001`
+- HTML pages should stay stable shell/loader pages.
+- UI behavior must live in external JavaScript files when possible.
+- External JavaScript and JSON data must be loaded with timestamp cache-busting.
+- Do not rely on inline JavaScript inside cached HTML for future UI changes.
+- This rule exists because RawGitHack may serve stale HTML after repository updates.
 
 Workflow:
 
-- Open the fixed preview URL once.
-- If the page does not visibly change after refresh, open the same page with the cache-busting query above.
-- `index.html` is now the control room, not the full register.
-- `work-register.html` loads `managed-work.json` and provides searchable visible register rows.
-- `state.json` and `managed-work.json` are loaded with `cache: no-store`.
+- Use the fixed preview URL for the main Control Room.
+- If visible UI does not change after refresh, verify the external JavaScript build label first.
+- `index.html` uses `app.js` as the control-room renderer.
+- `work-register.html` is the second page for searchable visible register rows.
+- `state.json`, `managed-work.json`, and artifact public views are loaded with cache-busting.
 
 Current dashboard coverage:
 
 - Main Control Room with quantitative KPIs at the top.
+- Progress Analysis table: Done / Total / Percent / Open / Stuck.
 - Owner Gate and Next Action.
 - Work Streams.
 - Lane Status.
@@ -38,6 +42,7 @@ Current dashboard coverage:
 - Link to full Work Register page.
 - Searchable Work Register page.
 - Ideas / Bugs / Completed / Planned categories.
+- Artifact Register list.
 - General visible record list with search.
 - Category and lifecycle filters.
 - Active Execution Slice remains separate from the backlog.
@@ -49,7 +54,6 @@ Repo-backed correction:
 - The Capability Roadmap tracks 21 capabilities.
 - The Candidate Register contains managed ideas, bugs, deferred candidates, planned items, completed items, and behavior-PASS records.
 - The Candidate Register is not a full backlog, scheduler, discovery engine, or task manager.
-- The preview now shows representative register categories and representative source rows instead of collapsing the work into a small task list.
 - Exact sanitized candidate / bug / idea counts have not yet been generated in this public preview.
 
 Security boundary:
