@@ -12,9 +12,9 @@
   "experimental_ui_allowed": false,
   "promotion_target": "PROD",
   "rollback_target": "TEST",
-  "banner": "PRE-PROD environment \u2014 release candidate review behind Owner Gate.",
+  "banner": "PRE-PROD environment — release candidate review behind Owner Gate.",
   "theme": "orange",
-  "risk_level": "high",
+  "risk_level": "elevated",
   "config_version": "ADMIN-CONFIG-ROLE-002",
   "feature_flags": {
     "config_center": true,
@@ -23,5 +23,7 @@
     "debug_tools": false,
     "experimental_ui": false
   },
-  "role_profile": "owner_release_candidate"
+  "role_profile": "owner_release_candidate",
+  "risk_mode": "safe",
+  "risk_color": "none"
 }
