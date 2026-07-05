@@ -26,7 +26,7 @@ The refresh/cache-bust belongs inside the environment entrypoint script src, not
 For DEV, the working owner-confirmed pattern is:
 
 ```html
-<script src="../../app-cr016.js?build=dev-mobile-compact-001"></script>
+<script src="../../app-cr016.js?build=dev-mobile-compact-002"></script>
 ```
 
 The environment page keeps `window.RANI_ENV` before loading the runtime, then loads the canonical runtime directly.
@@ -79,6 +79,32 @@ The overlay may compact mobile presentation only. In the confirmed fix it:
 - allowed Environment Center tap-to-expand
 - preserved all underlying runtime data and views
 
+## DEV Mobile Compact v002
+
+`dev-mobile-compact-002` extends the owner-confirmed overlay without changing runtime or data.
+
+It keeps the same one-file DEV entrypoint strategy and adds mobile readability fixes that were previously solved in the CR-016 mobile work:
+
+- App Scope and main tabs become compact horizontal scroll rows instead of a long vertical button block.
+- Environment Center collapses to a shorter default height.
+- Header subtitle is constrained on mobile.
+- KPI/cards remain compact two-column cards.
+- Legend chips become a compact horizontal row.
+- Tables remain scroll-safe without changing their data source.
+
+Confirmed implementation commit:
+
+```text
+39d800703402fa67f532088bf013351c877cd080
+```
+
+Key markers:
+
+```text
+app-cr016.js?build=dev-mobile-compact-002
+dev-mobile-compact-002
+```
+
 ## Confirmed Implementation
 
 Owner-visible PASS was confirmed after commit:
@@ -93,11 +119,18 @@ Changed file:
 env/dev/index.html
 ```
 
-Key markers:
+Original PASS markers:
 
 ```text
 app-cr016.js?build=dev-mobile-compact-001
 dev-mobile-compact-001
+```
+
+Current DEV compact markers:
+
+```text
+app-cr016.js?build=dev-mobile-compact-002
+dev-mobile-compact-002
 ```
 
 ## Recovery Procedure
@@ -116,8 +149,8 @@ If the web page appears stale or unchanged again:
 Expected checks:
 
 ```bash
-grep -n "app-cr016.js?build=dev-mobile-compact-001" env/dev/index.html
-grep -n "dev-mobile-compact-001" env/dev/index.html
+grep -n "app-cr016.js?build=dev-mobile-compact-002" env/dev/index.html
+grep -n "dev-mobile-compact-002" env/dev/index.html
 grep -n "app-dev.js" env/dev/index.html && exit 1 || true
 grep -RIn "Workflow Hub\|Development Tools\|Guided Operator Flow\|CR-017-WORKFLOW-GUIDED" env/dev/index.html app-cr016.js || true
 ```
@@ -148,5 +181,11 @@ Pre-polish engineering principles came from early Admin environment work:
 - PR #1: single-file CR-016 stable build, replacing patch-chain preview issues
 - PR #5: physical non-production entrypoints and `assetBase` for nested env pages
 - PR #6: persistent environment metadata and environment separation checks
+
+Earlier mobile/readability work that must not be regressed:
+
+- PR #2: Version Center and CI/CD stacked mobile cards without horizontal scrolling.
+- PR #3: Version Center-specific mobile cards with lower-priority fields in collapsed details.
+- PR #4: CR-016 mobile card readability, improved spacing, hierarchy, wrapping, and collapsed details.
 
 Later recovery validated that direct runtime loading plus entrypoint-level cache-bust and DEV mobile compact overlay produced the owner-visible PASS.
