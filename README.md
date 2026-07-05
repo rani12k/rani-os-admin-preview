@@ -27,6 +27,20 @@ RawGitHack is now legacy because it served stale preview files during developmen
 - `.github/workflows/pages.yml` — GitHub Pages deployment workflow
 - `pages-status.json` — delivery status
 
+
+## Environment Code Isolation Status
+
+- `ENV-CODE-ISOLATION-001`: PASS
+- PR #30 merged environment runtime isolation.
+- PR #29 was closed as superseded/conflicted after becoming stale and was not merged.
+- PROD no longer shares a runtime file with DEV, TEST, or PRE-PROD.
+- Current runtime mapping:
+  - PROD root `index.html` loads `app-prod.js`.
+  - DEV `env/dev/index.html` loads `app-dev.js`.
+  - TEST `env/test/index.html` loads `app-test.js`.
+  - PRE-PROD `env/preprod/index.html` loads `app-preprod.js`.
+- Future development must start in `app-dev.js` only.
+
 ## Dashboard Sections
 
 - Control Room
