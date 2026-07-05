@@ -12,5 +12,16 @@
   "experimental_ui_allowed": false,
   "promotion_target": "PRE-PROD",
   "rollback_target": "DEV",
-  "banner": "TEST environment \u2014 validation review with no writes."
+  "banner": "TEST environment \u2014 validation review with no writes.",
+  "theme": "yellow",
+  "risk_level": "medium",
+  "config_version": "ADMIN-CONFIG-ROLE-002",
+  "feature_flags": {
+    "config_center": true,
+    "role_access": true,
+    "persistent_environment_indicator": true,
+    "debug_tools": true,
+    "experimental_ui": false
+  },
+  "role_profile": "test_validation"
 }
