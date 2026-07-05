@@ -12,9 +12,9 @@
   "experimental_ui_allowed": false,
   "promotion_target": "PRE-PROD",
   "rollback_target": "DEV",
-  "banner": "TEST environment \u2014 validation review with no writes.",
-  "theme": "yellow",
-  "risk_level": "medium",
+  "banner": "TEST environment — validation review with no writes.",
+  "theme": "green",
+  "risk_level": "low",
   "config_version": "ADMIN-CONFIG-ROLE-002",
   "feature_flags": {
     "config_center": true,
@@ -23,5 +23,7 @@
     "debug_tools": true,
     "experimental_ui": false
   },
-  "role_profile": "test_validation"
+  "role_profile": "test_validation",
+  "risk_mode": "safe",
+  "risk_color": "none"
 }

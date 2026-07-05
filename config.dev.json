@@ -11,7 +11,7 @@
   "experimental_ui_allowed": true,
   "promotion_target": "TEST",
   "rollback_target": "none",
-  "banner": "DEV \u2014 experimental environment. Safe to break. No production actions.",
+  "banner": "DEV — experimental environment. Safe to break. No production actions.",
   "writes_allowed": false,
   "theme": "light-blue",
   "risk_level": "low",
@@ -23,5 +23,7 @@
     "debug_tools": true,
     "experimental_ui": true
   },
-  "role_profile": "dev_sandbox"
+  "role_profile": "dev_sandbox",
+  "risk_mode": "safe",
+  "risk_color": "none"
 }
