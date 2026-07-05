@@ -23,27 +23,6 @@ window.RANI_ENV = {
   "banner": "DEV environment — review only. No production actions."
 };
 </script>
-<script src="../../app-cr016.js?build=dev-table-readability-001"></script>
-<script>
-(function applyDevTableReadabilityFix(){
-  const css = `
-@media(max-width:820px){
-  .tablewrap{overflow-x:auto!important;overflow-y:visible!important;-webkit-overflow-scrolling:touch!important;max-width:100%!important}
-  .tablewrap table{min-width:760px!important;width:max-content!important;table-layout:auto!important;border-collapse:collapse!important}
-  .tablewrap th,.tablewrap td{min-width:84px!important;max-width:220px!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important;vertical-align:top!important;line-height:1.28!important;font-size:12px!important}
-  .tablewrap th:first-child,.tablewrap td:first-child{min-width:96px!important}
-  .tablewrap th:last-child,.tablewrap td:last-child{min-width:180px!important}
-}`;
-  function install(){
-    if(document.getElementById('dev-table-readability-001'))return;
-    const style=document.createElement('style');
-    style.id='dev-table-readability-001';
-    style.textContent=css;
-    document.head.appendChild(style);
-  }
-  install();
-  document.addEventListener('DOMContentLoaded',install);
-})();
-</script>
+<script src="../../app-cr016.js?build=dev-direct-cr016-recovery-002"></script>
 </body>
 </html>
