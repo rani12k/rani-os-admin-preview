@@ -1,0 +1,84 @@
+{
+  "policy_id": "RANI_RUNNER_POLICY_V0_1",
+  "status": "ACTIVE",
+  "purpose": "Deterministic execution gate for RANI OS. GPT may propose, but deterministic policy decides whether execution is allowed.",
+  "default_mode": "PLAN_ONLY",
+  "allowed_modes": [
+    "READ_ONLY",
+    "PLAN_ONLY",
+    "APPROVED_WRITE",
+    "VERIFY_ONLY",
+    "RECOVERY"
+  ],
+  "execution_default": false,
+  "write_requires_owner_approval": true,
+  "forbid_direct_main_write_without_packet": true,
+  "forbid_unlisted_files": true,
+  "forbid_conversation_as_source": true,
+  "forbid_unrecorded_baseline": true,
+  "forbid_missing_rollback_point": true,
+  "forbid_execution_when_mode_is_plan_only": true,
+  "required_packet_fields": [
+    "packet_id",
+    "mode",
+    "active_work_item",
+    "user_request",
+    "source_of_truth_read",
+    "baseline_commit",
+    "rollback_point",
+    "allowed_files",
+    "forbidden_files",
+    "proposed_action",
+    "expected_changes",
+    "owner_approval",
+    "execution_allowed"
+  ],
+  "minimum_source_of_truth_read_count": 1,
+  "protected_paths": [
+    "app-cr016.js",
+    "app-dev.js",
+    "app-prod.js",
+    "app-test.js",
+    "app-preprod.js",
+    "app-cr017.js",
+    "index.html",
+    "env/dev/index.html",
+    "env/test/index.html",
+    "env/preprod/index.html",
+    "00_MASTER/",
+    "99_RUNTIME/",
+    ".github/workflows/"
+  ],
+  "always_allowed_packet_paths": [
+    "99_RUNTIME/RUNNER_EXECUTION_PACKET.json",
+    "99_RUNTIME/RUNNER_EXECUTION_PACKET.example.json"
+  ],
+  "owner_approval": {
+    "required_value": true,
+    "required_phrase": "OWNER_APPROVED"
+  },
+  "valid_execution_conditions": {
+    "mode_must_be": "APPROVED_WRITE",
+    "execution_allowed_must_be": true,
+    "owner_approval_required": true,
+    "all_changed_files_must_be_listed_in_allowed_files": true,
+    "no_changed_file_may_match_forbidden_files": true,
+    "rollback_point_required": true,
+    "baseline_commit_required": true,
+    "source_of_truth_read_required": true
+  },
+  "forbidden_markers": [
+    "Workflow Hub",
+    "Development Tools",
+    "Guided Operator Flow",
+    "CR-017-WORKFLOW-GUIDED",
+    "dev-mobile-compact-002",
+    "dev-table-readability-001"
+  ],
+  "non_goals_v0_1": [
+    "No AI calls",
+    "No autonomous code editing",
+    "No automatic merges",
+    "No replacement for human owner approval"
+  ]
+}
