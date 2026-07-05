@@ -9,12 +9,12 @@ Source of Truth: repository
 Current safe DEV recovery state:
 
 ```text
-commit: 44665aae46789f580eda9c5640a15e7d689dd58f
+commit: 9bfc2fe3173e9a29e138193a6c127e5b2ede7b14
 file: env/dev/index.html
-runtime: ../../app-cr016.js?build=dev-direct-cr016-recovery-001
+runtime: ../../app-cr016.js?build=dev-direct-cr016-recovery-002
 ```
 
-This recovery restored the missing information layer: tasks, capabilities, reports, work records, artifacts, and related Admin data became visible again.
+This recovery restored direct canonical runtime loading after failed display overlays. It must be the recovery point if information disappears or the UI becomes unreadable.
 
 ## Problem
 
@@ -59,13 +59,16 @@ app-cr016.js?build=dev-mobile-compact-001
 dev-mobile-compact-001
 ```
 
-Known safe recovery marker after failed compact overlay:
+Known safe recovery markers after failed display attempts:
 
 ```text
 app-cr016.js?build=dev-direct-cr016-recovery-001
+app-cr016.js?build=dev-direct-cr016-recovery-002
 ```
 
-## Failed Attempt — Do Not Reuse
+## Failed Attempts — Do Not Reuse
+
+### dev-mobile-compact-002
 
 `dev-mobile-compact-002` failed.
 
@@ -81,54 +84,36 @@ Do not reintroduce:
 dev-mobile-compact-002
 ```
 
-Do not use aggressive overlay rules that:
+### dev-table-readability-001
+
+`dev-table-readability-001` failed.
+
+Failure mode:
+
+- The information layer remained fragile.
+- Mobile table changes still caused an owner-visible broken page.
+- Any entrypoint CSS override that targets runtime table internals can break the Admin Web presentation.
+
+Do not reintroduce:
+
+```text
+dev-table-readability-001
+```
+
+## Do Not Use Overlay Fixes Until Runtime UI Is Refactored
+
+Do not use aggressive or entrypoint-level CSS overlays that:
 
 - turn App Scope or tabs into clipped horizontal rows
 - hide or reshape navigation structures
 - hide data sections
 - alter reports / capabilities / tasks visibility
 - change runtime data assumptions
+- override `.tablewrap`, `table`, `th`, or `td` from the entrypoint
 
-## Safe DEV Mobile Fix Rules
+Future display work should be done inside a controlled runtime refactor of `app-cr016.js`, not by entrypoint overlays, unless the change is proven in a visual preview first.
 
-Future display fixes must be small and targeted.
-
-Allowed only after information is visible:
-
-- table-only horizontal scroll fixes
-- min-width for large tables
-- word wrapping improvements inside tables
-- small padding/font adjustments that do not hide controls
-
-Preferred next display fix class:
-
-```text
-DEV-TABLE-READABILITY-001
-```
-
-Allowed file for this class:
-
-```text
-env/dev/index.html
-```
-
-Expected behavior:
-
-- preserve tasks
-- preserve capabilities
-- preserve reports
-- preserve App Scope
-- preserve Work Records
-- preserve Artifacts
-- preserve Version Center
-- preserve CI/CD
-- preserve Owner Gates
-- preserve drill behavior
-- no Workflow Hub
-- no Development Tools
-- no Guided Operator Flow
-
-## Recovery Procedure
+## Required Recovery Procedure
 
 If the page appears stale, unchanged, or information disappears:
 
@@ -139,10 +124,10 @@ If the page appears stale, unchanged, or information disappears:
 5. Confirm no forbidden Workflow/DevTools/Guided markers exist.
 6. If data disappeared after an overlay, immediately return to direct runtime loading without overlay.
 
-Expected checks:
+Expected safe check:
 
 ```bash
-grep -n "app-cr016.js?build=dev-direct-cr016-recovery-001" env/dev/index.html
+grep -n "app-cr016.js?build=dev-direct-cr016-recovery-002" env/dev/index.html
 grep -n "app-dev.js" env/dev/index.html && exit 1 || true
 grep -RIn "Workflow Hub\|Development Tools\|Guided Operator Flow\|CR-017-WORKFLOW-GUIDED" env/dev/index.html app-cr016.js || true
 ```
@@ -156,6 +141,7 @@ Do not treat these as sufficient proof:
 - hash matches a baseline but owner-visible page is unchanged
 - a cache-bust is added to a temporary public URL
 - a compact overlay looks reasonable in code but hides owner-visible information
+- a table-only CSS overlay looks safe but changes runtime internals
 
 ## Related Historical Points
 
