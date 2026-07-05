@@ -1,0 +1,23 @@
+{
+  "packet_id": "RUNNER-EXAMPLE-001",
+  "mode": "PLAN_ONLY",
+  "active_work_item": "BUILD-RUNNER-001",
+  "user_request": "Create deterministic execution gate for RANI OS.",
+  "source_of_truth_read": [
+    "00_MASTER/RANI_RUNNER_POLICY.json"
+  ],
+  "baseline_commit": "",
+  "rollback_point": "",
+  "allowed_files": [],
+  "forbidden_files": [
+    "app-cr016.js",
+    "env/dev/index.html"
+  ],
+  "proposed_action": "Plan only. No execution allowed.",
+  "expected_changes": [],
+  "owner_approval": {
+    "approved": false,
+    "approval_phrase": ""
+  },
+  "execution_allowed": false
+}
