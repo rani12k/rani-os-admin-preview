@@ -17,11 +17,5 @@ jobs:
       - name: Collect changed files
         run: git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt || true
 
-      - name: Validate runner packet when present
-        run: |
-          if [ -f 99_RUNTIME/RUNNER_EXECUTION_PACKET.json ]; then
-            node tools/rani_runner.mjs validate --packet 99_RUNTIME/RUNNER_EXECUTION_PACKET.json --changed-files changed_files.txt
-          else
-            echo 'No runner packet present.'
-            cat changed_files.txt
-          fi
+      - name: Validate runner packet
+        run: node tools/rani_runner.mjs validate --changed-files changed_files.txt
