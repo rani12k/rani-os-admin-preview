@@ -1,0 +1,16 @@
+{
+  "environment": "PRE-PROD",
+  "environment_rank": 3,
+  "app": "ADMIN_WEB",
+  "build": "CR-016-MOBILE-002",
+  "capability_mode": "release_candidate",
+  "data_scope": "public_sanitized",
+  "owner_gate_required": true,
+  "production_actions_allowed": false,
+  "writes_allowed": false,
+  "debug_tools_allowed": false,
+  "experimental_ui_allowed": false,
+  "promotion_target": "PROD",
+  "rollback_target": "TEST",
+  "banner": "PRE-PROD environment \u2014 release candidate review behind Owner Gate."
+}
