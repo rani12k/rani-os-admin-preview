@@ -11,6 +11,17 @@
   "debug_tools_allowed": false,
   "experimental_ui_allowed": false,
   "promotion_target": "none",
-  "rollback_target": "PRE-PROD",
-  "banner": "PROD environment \u2014 stable production. Owner Gate required."
+  "rollback_target": "CR-013",
+  "banner": "PROD environment \u2014 stable production. Owner Gate required.",
+  "theme": "red",
+  "risk_level": "critical",
+  "config_version": "ADMIN-CONFIG-ROLE-002",
+  "feature_flags": {
+    "config_center": true,
+    "role_access": true,
+    "persistent_environment_indicator": true,
+    "debug_tools": false,
+    "experimental_ui": false
+  },
+  "role_profile": "production_restricted"
 }

@@ -12,5 +12,16 @@
   "promotion_target": "TEST",
   "rollback_target": "none",
   "banner": "DEV \u2014 experimental environment. Safe to break. No production actions.",
-  "writes_allowed": false
+  "writes_allowed": false,
+  "theme": "light-blue",
+  "risk_level": "low",
+  "config_version": "ADMIN-CONFIG-ROLE-002",
+  "feature_flags": {
+    "config_center": true,
+    "role_access": true,
+    "persistent_environment_indicator": true,
+    "debug_tools": true,
+    "experimental_ui": true
+  },
+  "role_profile": "dev_sandbox"
 }
