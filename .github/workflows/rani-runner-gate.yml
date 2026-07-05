@@ -1,0 +1,11 @@
+name: RANI Runner Gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  runner-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gate placeholder
+        run: echo RANI Runner Gate v0.1
