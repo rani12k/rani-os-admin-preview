@@ -1,11 +1,27 @@
 name: RANI Runner Gate
 
 on:
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   runner-gate:
     runs-on: ubuntu-latest
     steps:
-      - name: Gate placeholder
-        run: echo RANI Runner Gate v0.1
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect changed files
+        run: git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt || true
+
+      - name: Validate runner packet when present
+        run: |
+          if [ -f 99_RUNTIME/RUNNER_EXECUTION_PACKET.json ]; then
+            node tools/rani_runner.mjs validate --packet 99_RUNTIME/RUNNER_EXECUTION_PACKET.json --changed-files changed_files.txt
+          else
+            echo 'No runner packet present.'
+            cat changed_files.txt
+          fi
