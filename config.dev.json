@@ -4,12 +4,13 @@
   "app": "ADMIN_WEB",
   "build": "CR-016-MOBILE-002",
   "capability_mode": "experimental",
-  "data_scope": "public_sanitized_preview",
+  "data_scope": "public_sanitized",
   "owner_gate_required": false,
   "production_actions_allowed": false,
   "debug_tools_allowed": true,
   "experimental_ui_allowed": true,
   "promotion_target": "TEST",
   "rollback_target": "none",
-  "banner": "DEV — experimental environment. Safe to break. No production actions."
+  "banner": "DEV \u2014 experimental environment. Safe to break. No production actions.",
+  "writes_allowed": false
 }

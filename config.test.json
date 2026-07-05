@@ -1,0 +1,16 @@
+{
+  "environment": "TEST",
+  "environment_rank": 2,
+  "app": "ADMIN_WEB",
+  "build": "CR-016-MOBILE-002",
+  "capability_mode": "validation",
+  "data_scope": "public_sanitized",
+  "owner_gate_required": false,
+  "production_actions_allowed": false,
+  "writes_allowed": false,
+  "debug_tools_allowed": true,
+  "experimental_ui_allowed": false,
+  "promotion_target": "PRE-PROD",
+  "rollback_target": "DEV",
+  "banner": "TEST environment \u2014 validation review with no writes."
+}

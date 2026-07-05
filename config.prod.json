@@ -1,0 +1,16 @@
+{
+  "environment": "PROD",
+  "environment_rank": 4,
+  "app": "ADMIN_WEB",
+  "build": "CR-016-MOBILE-002",
+  "capability_mode": "stable",
+  "data_scope": "production",
+  "owner_gate_required": true,
+  "production_actions_allowed": false,
+  "writes_allowed": false,
+  "debug_tools_allowed": false,
+  "experimental_ui_allowed": false,
+  "promotion_target": "none",
+  "rollback_target": "PRE-PROD",
+  "banner": "PROD environment \u2014 stable production. Owner Gate required."
+}
