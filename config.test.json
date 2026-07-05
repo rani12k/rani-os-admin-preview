@@ -13,7 +13,7 @@
   "promotion_target": "PRE-PROD",
   "rollback_target": "DEV",
   "banner": "TEST environment — validation review with no writes.",
-  "theme": "green",
+  "theme": "teal",
   "risk_level": "low",
   "config_version": "ADMIN-CONFIG-ROLE-002",
   "feature_flags": {

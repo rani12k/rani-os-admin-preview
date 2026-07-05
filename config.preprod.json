@@ -13,7 +13,7 @@
   "promotion_target": "PROD",
   "rollback_target": "TEST",
   "banner": "PRE-PROD environment — release candidate review behind Owner Gate.",
-  "theme": "orange",
+  "theme": "violet",
   "risk_level": "elevated",
   "config_version": "ADMIN-CONFIG-ROLE-002",
   "feature_flags": {

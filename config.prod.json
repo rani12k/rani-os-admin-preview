@@ -13,7 +13,7 @@
   "promotion_target": "none",
   "rollback_target": "CR-013",
   "banner": "PROD SAFE environment — stable production. Risk red is reserved for live-risk, destructive, irreversible, physical-action, or production-override actions.",
-  "theme": "graphite",
+  "theme": "luxury-silver",
   "risk_level": "production-safe",
   "config_version": "ADMIN-CONFIG-ROLE-002",
   "feature_flags": {
