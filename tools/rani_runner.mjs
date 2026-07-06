@@ -66,14 +66,14 @@ function validate(policy, packet, changed) {
     warnings.push('no changed-files list supplied');
   } else {
     const alwaysAllowed = new Set(policy.always_allowed_packet_paths || []);
-    const protectedPaths = policy.protected_paths || [];
     const allowedFiles = new Set(packet.allowed_files || []);
     const forbiddenFiles = packet.forbidden_files || [];
+    const nonPacketChanges = changed.filter(file => !alwaysAllowed.has(file));
+    if (!mayExecute && nonPacketChanges.length > 0) {
+      fail(errors, `changes require execution approval: ${nonPacketChanges.join(', ')}`);
+    }
     for (const file of changed) {
       if (alwaysAllowed.has(file)) continue;
-      if (!mayExecute && protectedPaths.some(rule => isUnder(file, rule))) {
-        fail(errors, `protected change without approval: ${file}`);
-      }
       if (mayExecute && !allowedFiles.has(file)) {
         fail(errors, `changed file not allowed: ${file}`);
       }
