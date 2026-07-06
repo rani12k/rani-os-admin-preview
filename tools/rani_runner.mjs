@@ -8,6 +8,33 @@ const defaultPacket = path.join(root, '99_RUNTIME', 'RUNNER_EXECUTION_PACKET.jso
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 function readChanged(file) { if (!file) return []; if (!fs.existsSync(file)) throw new Error(`missing changed-files list: ${file}`); return fs.readFileSync(file, 'utf8').split(/\r?\n/).map(x => x.trim()).filter(Boolean); }
 function isUnder(file, rule) { return rule.endsWith('/') ? file.startsWith(rule) : file === rule; }
+function isBinary(buffer) { return buffer.includes(0); }
+function changedPath(file) { return path.resolve(root, file); }
+function scanForbiddenMarkers(policy, changed, errors) {
+  const markers = Array.isArray(policy.forbidden_markers) ? policy.forbidden_markers.filter(marker => typeof marker === 'string' && marker.length > 0) : [];
+  if (markers.length === 0) return;
+  for (const file of changed) {
+    const target = changedPath(file);
+    let stat;
+    try {
+      stat = fs.statSync(target);
+    } catch {
+      continue;
+    }
+    if (!stat.isFile()) continue;
+    let buffer;
+    try {
+      buffer = fs.readFileSync(target);
+    } catch {
+      continue;
+    }
+    if (isBinary(buffer)) continue;
+    const text = buffer.toString('utf8');
+    for (const marker of markers) {
+      if (text.includes(marker)) fail(errors, `forbidden marker found in ${file}: ${marker}`);
+    }
+  }
+}
 function fail(errors, message) { errors.push(message); }
 function requireObj(name, obj, fields, errors) { if (!obj || typeof obj !== 'object' || Array.isArray(obj)) { fail(errors, `${name} missing`); return null; } for (const f of fields || []) if (!(f in obj)) fail(errors, `${name}.${f} missing`); return obj; }
 
@@ -58,6 +85,7 @@ function validate(policy, packet, changed) {
   const allowedFiles = new Set(packet.allowed_files || []);
   const forbiddenFiles = packet.forbidden_files || [];
   for (const file of realChanges) { if (mayExecute && !allowedFiles.has(file)) fail(errors, `changed file not allowed: ${file}`); if (mayExecute && forbiddenFiles.some(rule => isUnder(file, rule))) fail(errors, `changed file forbidden: ${file}`); }
+  scanForbiddenMarkers(policy, changed, errors);
   return { valid: errors.length === 0, errors, warnings, packet_id: packet.packet_id || null, mode: mode || null, active_work_item: packet.active_work_item || null, execution_allowed: mayExecute, changed_files_count: changed.length };
 }
 
