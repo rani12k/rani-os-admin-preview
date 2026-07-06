@@ -101,3 +101,29 @@ This gap is accepted as a next hardening item, not a blocker for v0.2 Behavior P
 No protected work should proceed without a valid runner packet.
 
 The model remains a proposer. The runner is the deterministic gate.
+
+## BUILD-RUNNER-001 Forbidden Marker Scan Completion
+
+The runner now performs deterministic content scanning for all changed-file paths supplied through `changed_files.txt` using the `forbidden_markers` array from `00_MASTER/RANI_RUNNER_POLICY.json`.
+
+Scan behavior:
+
+- missing paths are skipped
+- directories are skipped
+- unreadable files are skipped
+- binary files are skipped
+- readable UTF-8 text files are scanned
+- validation fails when scanned text contains any configured forbidden marker
+
+Verification results for the six required scenarios:
+
+```text
+Scenario 1: configured forbidden marker #1 in changed text file -> FAIL / exit 1
+Scenario 2: configured forbidden marker #2 in changed text file -> FAIL / exit 1
+Scenario 3: configured forbidden marker #3 in changed text file -> FAIL / exit 1
+Scenario 4: required forbidden-marker scenario 4 in changed text file -> FAIL / exit 1
+Scenario 5: required forbidden-marker scenario 5 in changed text file -> FAIL / exit 1
+Scenario 6: changed text file without configured forbidden markers plus valid packet -> PASS / exit 0
+```
+
+BUILD-RUNNER-001 forbidden marker content scan is complete.
