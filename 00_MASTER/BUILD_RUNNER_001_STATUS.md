@@ -1,6 +1,6 @@
 # BUILD_RUNNER_001_STATUS
 
-Status: IMPLEMENTED / OWNER VERIFICATION REQUIRED
+Status: BEHAVIOR PASS / OWNER VERIFIED
 
 ## Purpose
 
@@ -26,12 +26,12 @@ The runner is not based on the model. It is deterministic code. The model may pr
 - conversation cannot be Source of Truth
 - owner approval requirements when execution is allowed
 - rollback point and baseline commit requirements when execution is allowed
-- changed files against allowed_files / forbidden_files when a changed-files list is supplied
-- protected files cannot change without approval when the validator is invoked
+- if execution_allowed is false, any non-packet file change fails
+- changed files against allowed_files / forbidden_files when execution is allowed
 
 ## Strict Gate
 
-`.github/workflows/rani-runner-gate.yml` now runs on pull requests to `main` and always calls:
+`.github/workflows/rani-runner-gate.yml` runs on pull requests to `main` and always calls:
 
 ```text
 node tools/rani_runner.mjs validate --changed-files changed_files.txt
@@ -45,29 +45,35 @@ The runner default packet path is:
 
 If the active packet is missing, the runner fails. Therefore future PRs that need to pass the gate must include a valid active execution packet.
 
-## Important Constraint
+## Owner Verification Results
 
-`99_RUNTIME/RUNNER_EXECUTION_PACKET.json` is intentionally not present by default in main at this stage because attempts to create it through the connector were blocked. This makes the gate strict for future PRs: a PR must provide the packet explicitly.
+Owner-provided verification after commit:
 
-## Completion Status
+```text
+c7d26f671c93fb7b617ea7403a6488813798b998
+```
 
-Implementation is complete enough to stop uncontrolled PRs:
+Results:
 
-- deterministic policy exists
-- deterministic runner exists
-- execution packet example exists
-- pull request gate exists
-- gate invokes runner unconditionally
+```text
+Scenario 1: README.md changed, no packet -> FAIL / exit 1
+Scenario 2: README.md changed, PLAN_ONLY and execution_allowed=false packet -> FAIL / exit 1
+Scenario 3: README.md changed, APPROVED_WRITE and OWNER_APPROVED packet -> PASS / exit 0
+git status at end: clean
+```
 
-## Remaining Owner Verification
+## Behavior PASS
 
-BUILD-RUNNER-001 is not owner-verified until these are tested:
+BUILD-RUNNER-001 reaches Behavior PASS.
 
-- a PR without runner packet fails
-- a PR with invalid packet fails
-- a PR with valid packet passes
-- owner confirms behavior
+The critical failure mode from the previous verification was fixed:
 
-## Rule Until Owner Verification
+```text
+PLAN_ONLY + changed file now fails.
+```
 
-No Admin Web, model, application, or UI work may continue until owner verification is complete.
+## Operating Rule From This Point
+
+No protected work should proceed without a valid runner packet.
+
+The model remains a proposer. The runner is the deterministic gate.
